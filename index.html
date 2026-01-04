@@ -3,53 +3,735 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ConditioningX - Cardiovascular Conditioning Education</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
+  <meta name="description" content="The world's most comprehensive cardiovascular conditioning education platform. Evidence-based workouts and expert-led content for teens, college students, and young professionals.">
+  <meta name="keywords" content="cardiovascular conditioning, cardio workout, HIIT, heart health, fitness for teens, women's fitness, exercise physiology">
+  <meta name="author" content="ConditioningX">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ConditioningX - Cardiovascular Conditioning Education">
+  <meta property="og:description" content="Democratizing healthy cardiovascular conditioning for young women and men worldwide.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://conditioningx.com">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ConditioningX">
+  <meta name="twitter:description" content="Evidence-based cardiovascular conditioning education.">
+
+  <title>ConditioningX - The World's Most Comprehensive Cardiovascular Conditioning Education Platform</title>
+
+  <link rel="canonical" href="https://conditioningx.com">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Schema.org Organization Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ConditioningX",
+    "url": "https://conditioningx.com",
+    "description": "The world's most comprehensive cardiovascular conditioning education platform",
+    "sameAs": []
+  }
+  </script>
+
+  <!-- Schema.org WebSite Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ConditioningX",
+    "url": "https://conditioningx.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://conditioningx.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
     }
-    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    h2 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.5rem; }
-    p { margin-bottom: 1rem; }
-    .tagline { color: #666; font-size: 1.1rem; margin-bottom: 2rem; }
-    .philosophy { background: #f5f5f5; padding: 1rem; border-radius: 4px; margin: 1.5rem 0; }
-    .philosophy p { margin: 0; }
-    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
-    a { color: #0066cc; }
-    .resources { margin-top: 2rem; }
-    .resources a { display: block; margin: 0.5rem 0; }
-  </style>
+  }
+  </script>
 </head>
 <body>
-  <h1>ConditioningX</h1>
-  <p class="tagline">The World's Most Comprehensive Cardiovascular Conditioning Education Platform</p>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
 
-  <p><strong>Mission:</strong> Democratize healthy cardiovascular conditioning for young women and men worldwide through evidence-based education and expert-led content.</p>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-  <div class="philosophy">
-    <p><strong>Core Philosophy:</strong> Health over aesthetics. Capability over appearance. Sustainable habits over transformation culture.</p>
-  </div>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <h2>Who We Serve</h2>
-  <ul>
-    <li>Teens (13-17) — especially young women</li>
-    <li>College-age (18-24)</li>
-    <li>Young professionals (25-30)</li>
-  </ul>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container">
+      <h1>Cardiovascular Conditioning<br>For Every Body</h1>
+      <p class="hero-subtitle">Evidence-based education and expert-led content that adapts to any environment, equipment, and time constraint.</p>
+      <div class="hero-cta">
+        <a href="/recommend/" class="btn btn-lg" style="background: #fff; color: var(--primary);">Find Your Workout</a>
+        <a href="/learn/" class="btn btn-lg btn-outline" style="border-color: #fff; color: #fff;">Start Learning</a>
+      </div>
+    </div>
+  </header>
 
-  <h2>Expert Network</h2>
-  <p>ConditioningX is built on a foundation of world-class expertise in exercise physiology, strength training, and female-specific conditioning.</p>
+  <!-- Philosophy Box -->
+  <section class="section-sm" style="background: var(--gray-50);">
+    <div class="container">
+      <div class="philosophy-box text-center">
+        <p><strong>Our Philosophy:</strong> Health over aesthetics. Capability over appearance. Sustainable habits over transformation culture.</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="resources">
-    <a href="Female-Experts.pdf">Female Expert Roster (PDF)</a>
-    <a href="Male-Experts.pdf">Male Expert Roster (PDF)</a>
-    <a href="Market-Research.pdf">Market Research (PDF)</a>
-  </div>
+  <!-- Stats Section -->
+  <section class="section">
+    <div class="container">
+      <div class="stats">
+        <div>
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Workouts</div>
+        </div>
+        <div>
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Expert Partners</div>
+        </div>
+        <div>
+          <div class="stat-number">20+</div>
+          <div class="stat-label">Environments</div>
+        </div>
+        <div>
+          <div class="stat-number">5-90</div>
+          <div class="stat-label">Min Workouts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Workout Finder -->
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-xl">Find Your Perfect Workout</h2>
+
+      <div class="recommender">
+        <!-- Progress Bar -->
+        <div class="recommender-progress">
+          <div class="recommender-progress-dot active"></div>
+          <div class="recommender-progress-dot"></div>
+          <div class="recommender-progress-dot"></div>
+          <div class="recommender-progress-dot"></div>
+          <div class="recommender-progress-dot"></div>
+        </div>
+
+        <!-- Step 1: Time -->
+        <div class="recommender-step active">
+          <h3 class="text-center mb-lg">How much time do you have?</h3>
+          <div class="option-grid time-options" data-selection="time">
+            <div class="option-card" data-value="5-10">
+              <div class="option-card-title">5-10 min</div>
+              <div class="option-card-desc">Micro Burst</div>
+            </div>
+            <div class="option-card" data-value="15-20">
+              <div class="option-card-title">15-20 min</div>
+              <div class="option-card-desc">Quick Hit</div>
+            </div>
+            <div class="option-card" data-value="25-35">
+              <div class="option-card-title">25-35 min</div>
+              <div class="option-card-desc">Standard</div>
+            </div>
+            <div class="option-card" data-value="40-50">
+              <div class="option-card-title">40-50 min</div>
+              <div class="option-card-desc">Full Session</div>
+            </div>
+            <div class="option-card" data-value="60">
+              <div class="option-card-title">60+ min</div>
+              <div class="option-card-desc">Endurance</div>
+            </div>
+            <div class="option-card" data-value="90">
+              <div class="option-card-title">90+ min</div>
+              <div class="option-card-desc">Long Steady</div>
+            </div>
+          </div>
+          <div class="text-center mt-xl">
+            <button class="btn btn-primary btn-lg" data-action="next">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Equipment -->
+        <div class="recommender-step">
+          <h3 class="text-center mb-lg">What equipment do you have access to?</h3>
+          <div class="option-grid equipment-options" data-selection="equipment">
+            <div class="option-card" data-value="0">
+              <div class="option-card-icon">🏃</div>
+              <div class="option-card-title">None</div>
+              <div class="option-card-desc">Bodyweight only</div>
+            </div>
+            <div class="option-card" data-value="1">
+              <div class="option-card-icon">⚡</div>
+              <div class="option-card-title">Minimal</div>
+              <div class="option-card-desc">Jump rope, bands, mat</div>
+            </div>
+            <div class="option-card" data-value="2">
+              <div class="option-card-icon">🏋️</div>
+              <div class="option-card-title">Home Basics</div>
+              <div class="option-card-desc">Dumbbells, kettlebell</div>
+            </div>
+            <div class="option-card" data-value="3">
+              <div class="option-card-icon">🏠</div>
+              <div class="option-card-title">Home Gym</div>
+              <div class="option-card-desc">Weights + cardio machine</div>
+            </div>
+            <div class="option-card" data-value="4">
+              <div class="option-card-icon">🏢</div>
+              <div class="option-card-title">Full Gym</div>
+              <div class="option-card-desc">All equipment available</div>
+            </div>
+          </div>
+          <div class="text-center mt-xl flex justify-center gap-md">
+            <button class="btn btn-outline" data-action="prev">Back</button>
+            <button class="btn btn-primary btn-lg" data-action="next">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Location -->
+        <div class="recommender-step">
+          <h3 class="text-center mb-lg">Where will you work out?</h3>
+          <div data-tabs>
+            <div class="tabs justify-center">
+              <button class="tab active" data-target="indoor-locations">Indoor</button>
+              <button class="tab" data-target="outdoor-locations">Outdoor</button>
+            </div>
+            <div id="indoor-locations" class="tab-content active">
+              <div class="option-grid grid-4" data-selection="location">
+                <div class="option-card" data-value="apartment-small">
+                  <div class="option-card-title">Small Apartment</div>
+                  <div class="option-card-desc">Silent, limited space</div>
+                </div>
+                <div class="option-card" data-value="apartment-large">
+                  <div class="option-card-title">Large Apartment</div>
+                  <div class="option-card-desc">Some noise OK</div>
+                </div>
+                <div class="option-card" data-value="house">
+                  <div class="option-card-title">House</div>
+                  <div class="option-card-desc">Full freedom</div>
+                </div>
+                <div class="option-card" data-value="hotel">
+                  <div class="option-card-title">Hotel Room</div>
+                  <div class="option-card-desc">Traveling</div>
+                </div>
+                <div class="option-card" data-value="dorm">
+                  <div class="option-card-title">Dorm Room</div>
+                  <div class="option-card-desc">Shared space</div>
+                </div>
+                <div class="option-card" data-value="office">
+                  <div class="option-card-title">Office</div>
+                  <div class="option-card-desc">Quick breaks</div>
+                </div>
+                <div class="option-card" data-value="gym-commercial">
+                  <div class="option-card-title">Gym</div>
+                  <div class="option-card-desc">Full equipment</div>
+                </div>
+                <div class="option-card" data-value="gym-crossfit">
+                  <div class="option-card-title">CrossFit Box</div>
+                  <div class="option-card-desc">Functional fitness</div>
+                </div>
+              </div>
+            </div>
+            <div id="outdoor-locations" class="tab-content">
+              <div class="option-grid grid-4" data-selection="location">
+                <div class="option-card" data-value="city-streets">
+                  <div class="option-card-title">City Streets</div>
+                  <div class="option-card-desc">Urban running</div>
+                </div>
+                <div class="option-card" data-value="park">
+                  <div class="option-card-title">Park</div>
+                  <div class="option-card-desc">Open space</div>
+                </div>
+                <div class="option-card" data-value="beach">
+                  <div class="option-card-title">Beach</div>
+                  <div class="option-card-desc">Sand + water</div>
+                </div>
+                <div class="option-card" data-value="trail">
+                  <div class="option-card-title">Trail</div>
+                  <div class="option-card-desc">Nature running</div>
+                </div>
+                <div class="option-card" data-value="track">
+                  <div class="option-card-title">Track</div>
+                  <div class="option-card-desc">Measured distance</div>
+                </div>
+                <div class="option-card" data-value="pool">
+                  <div class="option-card-title">Pool</div>
+                  <div class="option-card-desc">Swimming</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-xl flex justify-center gap-md">
+            <button class="btn btn-outline" data-action="prev">Back</button>
+            <button class="btn btn-primary btn-lg" data-action="next">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Experience -->
+        <div class="recommender-step">
+          <h3 class="text-center mb-lg">What's your experience level?</h3>
+          <div class="option-grid grid-3" data-selection="experience" style="max-width: 800px; margin: 0 auto;">
+            <div class="option-card" data-value="beginner">
+              <div class="option-card-icon">🌱</div>
+              <div class="option-card-title">Beginner</div>
+              <div class="option-card-desc">0-6 months of regular cardio</div>
+            </div>
+            <div class="option-card" data-value="intermediate">
+              <div class="option-card-icon">🌿</div>
+              <div class="option-card-title">Intermediate</div>
+              <div class="option-card-desc">6-24 months experience</div>
+            </div>
+            <div class="option-card" data-value="advanced">
+              <div class="option-card-icon">🌳</div>
+              <div class="option-card-title">Advanced</div>
+              <div class="option-card-desc">2+ years of training</div>
+            </div>
+          </div>
+          <div class="text-center mt-xl flex justify-center gap-md">
+            <button class="btn btn-outline" data-action="prev">Back</button>
+            <button class="btn btn-primary btn-lg" data-action="next">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 5: Goal -->
+        <div class="recommender-step">
+          <h3 class="text-center mb-lg">What's your primary goal?</h3>
+          <div class="option-grid grid-4" data-selection="goal" style="max-width: 900px; margin: 0 auto;">
+            <div class="option-card" data-value="health">
+              <div class="option-card-icon">❤️</div>
+              <div class="option-card-title">General Health</div>
+              <div class="option-card-desc">Well-rounded fitness</div>
+            </div>
+            <div class="option-card" data-value="sport">
+              <div class="option-card-icon">⚽</div>
+              <div class="option-card-title">Sport-Specific</div>
+              <div class="option-card-desc">Athletic performance</div>
+            </div>
+            <div class="option-card" data-value="mental">
+              <div class="option-card-icon">🧠</div>
+              <div class="option-card-title">Mental Health</div>
+              <div class="option-card-desc">Stress relief, mood boost</div>
+            </div>
+            <div class="option-card" data-value="social">
+              <div class="option-card-icon">👥</div>
+              <div class="option-card-title">Social</div>
+              <div class="option-card-desc">Partner/group workouts</div>
+            </div>
+          </div>
+          <div class="text-center mt-xl flex justify-center gap-md">
+            <button class="btn btn-outline" data-action="prev">Back</button>
+            <button class="btn btn-primary btn-lg" data-action="next">Get Recommendations</button>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="recommender-results"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who We Serve -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center mb-xl">Who We Serve</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
+            <h3 class="card-title">Teens (13-17)</h3>
+            <p class="card-text">Fun-focused approaches with safe intensity progression. Building foundations and confidence.</p>
+            <div class="tags justify-center">
+              <span class="tag">60 min daily goal</span>
+              <span class="tag">Fundamental skills</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+            <h3 class="card-title">College Age (18-24)</h3>
+            <p class="card-text">Peak performance potential balanced with academics. Dorm-friendly and time-efficient workouts.</p>
+            <div class="tags justify-center">
+              <span class="tag">Dorm workouts</span>
+              <span class="tag">Social fitness</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">💼</div>
+            <h3 class="card-title">Young Pros (25-30)</h3>
+            <p class="card-text">Sustainable habits with work-life-fitness balance. Injury prevention and long-term health focus.</p>
+            <div class="tags justify-center">
+              <span class="tag">Time-efficient</span>
+              <span class="tag">Sustainable</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Expert Partners -->
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-md">Expert Partnership Network</h2>
+      <p class="text-center text-gray mb-xl" style="max-width: 600px; margin-left: auto; margin-right: auto;">World-class expertise in exercise physiology, strength training, and female-specific conditioning.</p>
+
+      <div class="grid grid-4">
+        <!-- Dr. Stacy Sims -->
+        <div class="card expert-card">
+          <div class="expert-img"></div>
+          <div class="card-body">
+            <span class="expert-tier">Tier 1</span>
+            <h4 class="card-title">Dr. Stacy Sims</h4>
+            <p class="expert-tagline">"Women Are Not Small Men"</p>
+            <ul class="expert-credentials">
+              <li>PhD Exercise Physiology</li>
+              <li>20+ years research</li>
+              <li>Author: ROAR, Next Level</li>
+            </ul>
+            <a href="/experts/dr-stacy-sims.html" class="btn btn-sm btn-outline">View Profile</a>
+          </div>
+        </div>
+
+        <!-- Molly Galbraith -->
+        <div class="card expert-card">
+          <div class="expert-img"></div>
+          <div class="card-body">
+            <span class="expert-tier">Tier 1</span>
+            <h4 class="card-title">Molly Galbraith</h4>
+            <p class="expert-tagline">"Strong Women Lift Each Other Up"</p>
+            <ul class="expert-credentials">
+              <li>Co-Founder, Girls Gone Strong</li>
+              <li>800K+ member movement</li>
+              <li>17+ years coaching</li>
+            </ul>
+            <a href="/experts/molly-galbraith.html" class="btn btn-sm btn-outline">View Profile</a>
+          </div>
+        </div>
+
+        <!-- Meg Gallagher -->
+        <div class="card expert-card">
+          <div class="expert-img"></div>
+          <div class="card-body">
+            <span class="expert-tier">Tier 1</span>
+            <h4 class="card-title">Meg Gallagher</h4>
+            <p class="expert-tagline">Strength Training Made Accessible</p>
+            <ul class="expert-credentials">
+              <li>ISSA Certified Trainer</li>
+              <li>230K+ YouTube subscribers</li>
+              <li>Stronger by the Day app</li>
+            </ul>
+            <a href="/experts/meg-gallagher.html" class="btn btn-sm btn-outline">View Profile</a>
+          </div>
+        </div>
+
+        <!-- Greg Nuckols -->
+        <div class="card expert-card">
+          <div class="expert-img"></div>
+          <div class="card-body">
+            <span class="expert-tier">Tier 1</span>
+            <h4 class="card-title">Greg Nuckols</h4>
+            <p class="expert-tagline">Evidence-Based Strength Education</p>
+            <ul class="expert-credentials">
+              <li>M.A. Exercise Physiology</li>
+              <li>Stronger by Science</li>
+              <li>World record powerlifter</li>
+            </ul>
+            <a href="/experts/greg-nuckols.html" class="btn btn-sm btn-outline">View Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-xl">
+        <a href="/experts/" class="btn btn-primary">View All 25+ Experts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workout Categories -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center mb-xl">Workout Library</h2>
+
+      <div class="grid grid-4">
+        <a href="/workouts/running/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏃</div>
+            <h4>Running</h4>
+            <p class="text-sm text-gray">Intervals, tempo, trails</p>
+          </div>
+        </a>
+        <a href="/workouts/cycling/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚴</div>
+            <h4>Cycling</h4>
+            <p class="text-sm text-gray">Indoor & outdoor</p>
+          </div>
+        </a>
+        <a href="/workouts/swimming/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏊</div>
+            <h4>Swimming</h4>
+            <p class="text-sm text-gray">Laps & intervals</p>
+          </div>
+        </a>
+        <a href="/workouts/jump-rope/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
+            <h4>Jump Rope</h4>
+            <p class="text-sm text-gray">HIIT & skill work</p>
+          </div>
+        </a>
+        <a href="/workouts/bodyweight/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏋️</div>
+            <h4>Bodyweight</h4>
+            <p class="text-sm text-gray">No equipment needed</p>
+          </div>
+        </a>
+        <a href="/workouts/hiit/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔥</div>
+            <h4>HIIT</h4>
+            <p class="text-sm text-gray">High-intensity intervals</p>
+          </div>
+        </a>
+        <a href="/workouts/dance/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💃</div>
+            <h4>Dance</h4>
+            <p class="text-sm text-gray">Rhythm-based cardio</p>
+          </div>
+        </a>
+        <a href="/workouts/rowing/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚣</div>
+            <h4>Rowing</h4>
+            <p class="text-sm text-gray">Full-body cardio</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-xl">
+        <a href="/workouts/" class="btn btn-outline">Browse All Workouts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational Content Pillars -->
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-xl">Learn the Science</h2>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Cardiovascular Physiology</h3>
+            <p class="card-text">Understand how your heart and lungs work together. Learn about energy systems, VO2 max, and heart rate training zones.</p>
+            <a href="/learn/cardiovascular-basics/" class="btn btn-sm btn-primary">Start Learning</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Female-Specific Training</h3>
+            <p class="card-text">Training across your menstrual cycle, hormonal considerations, and evidence-based approaches for women.</p>
+            <a href="/learn/female-training/" class="btn btn-sm btn-primary">Start Learning</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Heart Rate Training</h3>
+            <p class="card-text">Master the 5 heart rate zones. Learn when to push hard and when to go easy for optimal results.</p>
+            <a href="/learn/heart-rate-training/" class="btn btn-sm btn-primary">Start Learning</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Heart Rate Zones Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2" style="align-items: center;">
+        <div>
+          <h2 class="mb-md">Understanding Heart Rate Zones</h2>
+          <p class="mb-lg">Training in different heart rate zones produces different adaptations. Learn to use zones for smarter, more effective conditioning.</p>
+          <a href="/tools/heart-rate-calculator.html" class="btn btn-primary">Calculate Your Zones</a>
+        </div>
+        <div class="hr-zones">
+          <div class="hr-zone hr-zone-1">
+            <span class="hr-zone-label">Zone 1</span>
+            <span>Recovery</span>
+            <span class="hr-zone-range">50-60% max HR</span>
+          </div>
+          <div class="hr-zone hr-zone-2">
+            <span class="hr-zone-label">Zone 2</span>
+            <span>Aerobic Base</span>
+            <span class="hr-zone-range">60-70% max HR</span>
+          </div>
+          <div class="hr-zone hr-zone-3">
+            <span class="hr-zone-label">Zone 3</span>
+            <span>Tempo</span>
+            <span class="hr-zone-range">70-80% max HR</span>
+          </div>
+          <div class="hr-zone hr-zone-4">
+            <span class="hr-zone-label">Zone 4</span>
+            <span>Threshold</span>
+            <span class="hr-zone-range">80-90% max HR</span>
+          </div>
+          <div class="hr-zone hr-zone-5">
+            <span class="hr-zone-label">Zone 5</span>
+            <span>Max Effort</span>
+            <span class="hr-zone-range">90-100% max HR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Environment Guides -->
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-xl">Workouts for Every Environment</h2>
+
+      <div class="grid grid-4">
+        <a href="/workouts/location/apartment/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2rem;">🏢</div>
+            <h4 class="mt-sm">Apartment</h4>
+            <p class="text-sm text-gray">Silent, low-impact options</p>
+          </div>
+        </a>
+        <a href="/workouts/location/hotel/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2rem;">🏨</div>
+            <h4 class="mt-sm">Hotel Room</h4>
+            <p class="text-sm text-gray">Travel-friendly workouts</p>
+          </div>
+        </a>
+        <a href="/workouts/location/park/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2rem;">🌳</div>
+            <h4 class="mt-sm">Park</h4>
+            <p class="text-sm text-gray">Outdoor circuits</p>
+          </div>
+        </a>
+        <a href="/workouts/location/gym-commercial/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2rem;">🏋️</div>
+            <h4 class="mt-sm">Gym</h4>
+            <p class="text-sm text-gray">Full equipment access</p>
+          </div>
+        </a>
+        <a href="/workouts/location/beach/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2rem;">🏖️</div>
+            <h4 class="mt-sm">Beach</h4>
+            <p class="text-sm text-gray">Sand and surf</p>
+          </div>
+        </a>
+        <a href="/workouts/location/trail/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2rem;">🥾</div>
+            <h4 class="mt-sm">Trail</h4>
+            <p class="text-sm text-gray">Nature running</p>
+          </div>
+        </a>
+        <a href="/workouts/location/dorm/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2rem;">🛏️</div>
+            <h4 class="mt-sm">Dorm Room</h4>
+            <p class="text-sm text-gray">College-friendly</p>
+          </div>
+        </a>
+        <a href="/workouts/location/pool/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 2rem;">🏊</div>
+            <h4 class="mt-sm">Pool</h4>
+            <p class="text-sm text-gray">Low-impact swimming</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff;">
+    <div class="container text-center">
+      <h2 style="color: #fff;">Ready to Start?</h2>
+      <p class="hero-subtitle">Find a workout that fits your time, equipment, and environment.</p>
+      <a href="/recommend/" class="btn btn-lg" style="background: #fff; color: var(--primary);">Find Your Workout</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning for young women and men worldwide.</p>
+          <p class="mt-md"><strong>Core Philosophy:</strong> Health over aesthetics. Capability over appearance.</p>
+        </div>
+
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/beginner/">Beginner</a></li>
+            <li><a href="/workouts/hiit/">HIIT</a></li>
+            <li><a href="/workouts/running/">Running</a></li>
+            <li><a href="/workouts/bodyweight/">Bodyweight</a></li>
+            <li><a href="/workouts/swimming/">Swimming</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/cardiovascular-basics/">Cardio Basics</a></li>
+            <li><a href="/learn/female-training/">Female Training</a></li>
+            <li><a href="/learn/heart-rate-training/">HR Zones</a></li>
+            <li><a href="/learn/energy-systems/">Energy Systems</a></li>
+            <li><a href="/learn/vo2-max/">VO2 Max</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/experts/">Expert Network</a></li>
+            <li><a href="/programs/">Programs</a></li>
+            <li><a href="/tools/">Tools</a></li>
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="Female-Experts.pdf">Female Experts PDF</a></li>
+            <li><a href="Male-Experts.pdf">Male Experts PDF</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome. All levels supported.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

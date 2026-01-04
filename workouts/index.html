@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="500+ cardiovascular workouts for every time, equipment level, and environment. Running, cycling, swimming, HIIT, bodyweight, and more.">
+  <title>Workout Library - 500+ Cardio Workouts - ConditioningX</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "ConditioningX Workout Library",
+    "description": "500+ cardiovascular workouts for every fitness level",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": 500
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding: 3rem 0;">
+    <div class="container">
+      <h1>Workout Library</h1>
+      <p class="hero-subtitle">500+ workouts for every time, equipment level, and environment.</p>
+      <a href="/recommend/" class="btn btn-lg" style="background: #fff; color: var(--primary);">Find Your Perfect Workout</a>
+    </div>
+  </header>
+
+  <!-- Filter Section -->
+  <section class="section-sm" style="background: var(--gray-50);">
+    <div class="container">
+      <div class="grid grid-4">
+        <div class="form-group">
+          <label class="form-label">Time Available</label>
+          <select class="form-select" id="filter-time">
+            <option value="">Any Duration</option>
+            <option value="5-10">5-10 minutes</option>
+            <option value="15-20">15-20 minutes</option>
+            <option value="25-35">25-35 minutes</option>
+            <option value="40-50">40-50 minutes</option>
+            <option value="60+">60+ minutes</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Modality</label>
+          <select class="form-select" id="filter-modality">
+            <option value="">All Types</option>
+            <option value="running">Running</option>
+            <option value="cycling">Cycling</option>
+            <option value="swimming">Swimming</option>
+            <option value="hiit">HIIT</option>
+            <option value="bodyweight">Bodyweight</option>
+            <option value="jump-rope">Jump Rope</option>
+            <option value="dance">Dance</option>
+            <option value="rowing">Rowing</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Experience Level</label>
+          <select class="form-select" id="filter-level">
+            <option value="">All Levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Equipment</label>
+          <select class="form-select" id="filter-equipment">
+            <option value="">Any Equipment</option>
+            <option value="none">No Equipment</option>
+            <option value="minimal">Minimal (rope, bands)</option>
+            <option value="home">Home Gym</option>
+            <option value="full">Full Gym</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Browse by Modality -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-lg">Browse by Modality</h2>
+      <div class="grid grid-4">
+        <a href="running/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏃</div>
+            <h3>Running</h3>
+            <p class="text-gray">Intervals, tempo runs, trails, sprints</p>
+            <span class="tag">75+ workouts</span>
+          </div>
+        </a>
+        <a href="cycling/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🚴</div>
+            <h3>Cycling</h3>
+            <p class="text-gray">Indoor, outdoor, hills, sprints</p>
+            <span class="tag">60+ workouts</span>
+          </div>
+        </a>
+        <a href="swimming/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏊</div>
+            <h3>Swimming</h3>
+            <p class="text-gray">Laps, intervals, open water</p>
+            <span class="tag">45+ workouts</span>
+          </div>
+        </a>
+        <a href="hiit/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔥</div>
+            <h3>HIIT</h3>
+            <p class="text-gray">Tabata, EMOM, AMRAP circuits</p>
+            <span class="tag">100+ workouts</span>
+          </div>
+        </a>
+        <a href="bodyweight/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏋️</div>
+            <h3>Bodyweight</h3>
+            <p class="text-gray">No equipment cardio circuits</p>
+            <span class="tag">80+ workouts</span>
+          </div>
+        </a>
+        <a href="jump-rope/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">⚡</div>
+            <h3>Jump Rope</h3>
+            <p class="text-gray">Basic to double unders</p>
+            <span class="tag">40+ workouts</span>
+          </div>
+        </a>
+        <a href="dance/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">💃</div>
+            <h3>Dance</h3>
+            <p class="text-gray">Rhythm-based cardio fun</p>
+            <span class="tag">35+ workouts</span>
+          </div>
+        </a>
+        <a href="rowing/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🚣</div>
+            <h3>Rowing</h3>
+            <p class="text-gray">Full-body cardio power</p>
+            <span class="tag">30+ workouts</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Browse by Experience -->
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="mb-lg">Browse by Experience Level</h2>
+      <div class="grid grid-3">
+        <a href="beginner/" class="card" style="text-decoration: none;">
+          <div class="card-body">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌱</div>
+            <h3>Beginner</h3>
+            <p class="text-gray">0-6 months of regular cardio. Form-first, low intensity, habit building.</p>
+            <div class="tags mt-md">
+              <span class="tag">Low intensity</span>
+              <span class="tag">Clear instructions</span>
+              <span class="tag">Modifications included</span>
+            </div>
+          </div>
+        </a>
+        <a href="intermediate/" class="card" style="text-decoration: none;">
+          <div class="card-body">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌿</div>
+            <h3>Intermediate</h3>
+            <p class="text-gray">6-24 months experience. Progressive intensity, variety introduction.</p>
+            <div class="tags mt-md">
+              <span class="tag">Moderate intensity</span>
+              <span class="tag">More variety</span>
+              <span class="tag">Progressive overload</span>
+            </div>
+          </div>
+        </a>
+        <a href="advanced/" class="card" style="text-decoration: none;">
+          <div class="card-body">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌳</div>
+            <h3>Advanced</h3>
+            <p class="text-gray">24+ months of training. Periodization, performance optimization.</p>
+            <div class="tags mt-md">
+              <span class="tag">High intensity</span>
+              <span class="tag">Complex protocols</span>
+              <span class="tag">Performance focus</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Browse by Time -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-lg">Browse by Time Available</h2>
+      <div class="grid grid-3">
+        <a href="time/5-min/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <h3>5-10 Minutes</h3>
+            <p class="text-gray">Micro Burst — Very High Intensity</p>
+            <p class="text-sm">Tabata, EMOM, quick hits</p>
+          </div>
+        </a>
+        <a href="time/15-min/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <h3>15-20 Minutes</h3>
+            <p class="text-gray">Quick Hit — High Intensity</p>
+            <p class="text-sm">HIIT circuits, interval runs</p>
+          </div>
+        </a>
+        <a href="time/30-min/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <h3>25-35 Minutes</h3>
+            <p class="text-gray">Standard Session — Moderate-High</p>
+            <p class="text-sm">Complete workouts</p>
+          </div>
+        </a>
+        <a href="time/45-min/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <h3>40-50 Minutes</h3>
+            <p class="text-gray">Full Session — Moderate</p>
+            <p class="text-sm">Full warm-up to cool-down</p>
+          </div>
+        </a>
+        <a href="time/60-min/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <h3>60+ Minutes</h3>
+            <p class="text-gray">Endurance Build — Low-Moderate</p>
+            <p class="text-sm">Long runs, rides, swims</p>
+          </div>
+        </a>
+        <a href="time/90-min/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <h3>90+ Minutes</h3>
+            <p class="text-gray">Long Steady State — Low</p>
+            <p class="text-sm">Endurance events</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Browse by Location -->
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="mb-lg">Browse by Location</h2>
+
+      <h3 class="mb-md">Indoor Environments</h3>
+      <div class="grid grid-4 mb-xl">
+        <a href="location/apartment/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏢</div>
+            <h4 class="mt-sm">Apartment</h4>
+            <p class="text-sm text-gray">Silent, low-impact</p>
+          </div>
+        </a>
+        <a href="location/house/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏠</div>
+            <h4 class="mt-sm">House</h4>
+            <p class="text-sm text-gray">Full freedom</p>
+          </div>
+        </a>
+        <a href="location/hotel/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏨</div>
+            <h4 class="mt-sm">Hotel Room</h4>
+            <p class="text-sm text-gray">Travel workouts</p>
+          </div>
+        </a>
+        <a href="location/dorm/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🛏️</div>
+            <h4 class="mt-sm">Dorm Room</h4>
+            <p class="text-sm text-gray">College-friendly</p>
+          </div>
+        </a>
+        <a href="location/office/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">💼</div>
+            <h4 class="mt-sm">Office</h4>
+            <p class="text-sm text-gray">Desk breaks</p>
+          </div>
+        </a>
+        <a href="location/gym-commercial/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏋️</div>
+            <h4 class="mt-sm">Commercial Gym</h4>
+            <p class="text-sm text-gray">Full equipment</p>
+          </div>
+        </a>
+        <a href="location/gym-crossfit/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏆</div>
+            <h4 class="mt-sm">CrossFit Box</h4>
+            <p class="text-sm text-gray">Functional fitness</p>
+          </div>
+        </a>
+        <a href="location/gym-ymca/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏊</div>
+            <h4 class="mt-sm">YMCA</h4>
+            <p class="text-sm text-gray">Family-friendly</p>
+          </div>
+        </a>
+      </div>
+
+      <h3 class="mb-md">Outdoor Environments</h3>
+      <div class="grid grid-4">
+        <a href="location/city-streets/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🌆</div>
+            <h4 class="mt-sm">City Streets</h4>
+            <p class="text-sm text-gray">Urban running</p>
+          </div>
+        </a>
+        <a href="location/suburban/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏘️</div>
+            <h4 class="mt-sm">Suburban</h4>
+            <p class="text-sm text-gray">Neighborhood routes</p>
+          </div>
+        </a>
+        <a href="location/park/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🌳</div>
+            <h4 class="mt-sm">Park</h4>
+            <p class="text-sm text-gray">Open space circuits</p>
+          </div>
+        </a>
+        <a href="location/beach/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏖️</div>
+            <h4 class="mt-sm">Beach</h4>
+            <p class="text-sm text-gray">Sand resistance</p>
+          </div>
+        </a>
+        <a href="location/trail/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🥾</div>
+            <h4 class="mt-sm">Trail</h4>
+            <p class="text-sm text-gray">Nature running</p>
+          </div>
+        </a>
+        <a href="location/track/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏟️</div>
+            <h4 class="mt-sm">Track</h4>
+            <p class="text-sm text-gray">Measured intervals</p>
+          </div>
+        </a>
+        <a href="location/pool/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">🏊</div>
+            <h4 class="mt-sm">Pool</h4>
+            <p class="text-sm text-gray">Swimming workouts</p>
+          </div>
+        </a>
+        <a href="location/mountain/" class="card" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <div style="font-size: 1.5rem;">⛰️</div>
+            <h4 class="mt-sm">Mountain/Hills</h4>
+            <p class="text-sm text-gray">Elevation training</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Workouts -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-lg">Featured Workouts</h2>
+      <div class="grid grid-3">
+        <div class="card workout-card">
+          <div class="card-img" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);"></div>
+          <span class="workout-badge">20 min</span>
+          <div class="card-body">
+            <h4 class="card-title">Apartment-Friendly HIIT</h4>
+            <div class="workout-meta">
+              <span>Bodyweight</span>
+              <span>Beginner</span>
+            </div>
+            <p class="card-text">No-jumping, neighbor-friendly high-intensity intervals. Silent but effective.</p>
+            <a href="bodyweight/apartment-hiit.html" class="btn btn-sm btn-primary">Start Workout</a>
+          </div>
+        </div>
+
+        <div class="card workout-card">
+          <div class="card-img" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);"></div>
+          <span class="workout-badge">25 min</span>
+          <div class="card-body">
+            <h4 class="card-title">Beginner Run/Walk</h4>
+            <div class="workout-meta">
+              <span>Running</span>
+              <span>Beginner</span>
+            </div>
+            <p class="card-text">Alternating 2 min run, 1 min walk. Perfect for building your cardio base.</p>
+            <a href="running/beginner-run-walk.html" class="btn btn-sm btn-primary">Start Workout</a>
+          </div>
+        </div>
+
+        <div class="card workout-card">
+          <div class="card-img" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);"></div>
+          <span class="workout-badge">15 min</span>
+          <div class="card-body">
+            <h4 class="card-title">Jump Rope HIIT</h4>
+            <div class="workout-meta">
+              <span>Jump Rope</span>
+              <span>Intermediate</span>
+            </div>
+            <p class="card-text">30 seconds on, 30 seconds rest. Build coordination and cardio simultaneously.</p>
+            <a href="jump-rope/hiit-intervals.html" class="btn btn-sm btn-primary">Start Workout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning for young women and men worldwide.</p>
+        </div>
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/beginner/">Beginner</a></li>
+            <li><a href="/workouts/hiit/">HIIT</a></li>
+            <li><a href="/workouts/running/">Running</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/cardiovascular-basics/">Cardio Basics</a></li>
+            <li><a href="/learn/female-training/">Female Training</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/experts/">Expert Network</a></li>
+            <li><a href="/programs/">Programs</a></li>
+            <li><a href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
