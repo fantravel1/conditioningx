@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free heart rate zone calculator. Calculate your personalized training zones using the Tanaka formula and Karvonen method.">
+  <title>Heart Rate Zone Calculator - ConditioningX</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Heart Rate Zone Calculator",
+    "description": "Calculate personalized heart rate training zones",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <p class="text-sm mb-md"><a href="/tools/">Tools</a> / Heart Rate Calculator</p>
+      <h1>Heart Rate Zone Calculator</h1>
+      <p class="text-gray">Calculate your personalized heart rate training zones for optimal cardiovascular conditioning.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2" style="gap: 3rem; align-items: start;">
+        <div>
+          <div class="card">
+            <div class="card-body">
+              <form id="hr-calculator">
+                <div class="form-group">
+                  <label class="form-label" for="hr-age">Your Age *</label>
+                  <input type="number" id="hr-age" class="form-input" placeholder="e.g., 25" min="10" max="100" required>
+                  <p class="text-sm text-gray mt-sm">Used to estimate your maximum heart rate</p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="hr-resting">Resting Heart Rate (optional)</label>
+                  <input type="number" id="hr-resting" class="form-input" placeholder="e.g., 60" min="30" max="120">
+                  <p class="text-sm text-gray mt-sm">For more accurate zones using the Karvonen method. Measure first thing in the morning.</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Calculate My Zones</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="card mt-lg">
+            <div class="card-body">
+              <h4>How to Measure Resting Heart Rate</h4>
+              <ol style="margin-left: 1.5rem;">
+                <li class="mb-sm">Measure first thing in the morning, before getting out of bed</li>
+                <li class="mb-sm">Use a heart rate monitor, fitness watch, or find your pulse</li>
+                <li class="mb-sm">Count beats for 60 seconds (or 15 seconds x 4)</li>
+                <li class="mb-sm">Average 3-5 days for best accuracy</li>
+              </ol>
+              <p class="text-sm text-gray mt-md">Typical resting HR: 60-80 bpm (lower is generally better fitness)</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div id="hr-results" class="hidden">
+            <!-- Results will be inserted here -->
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h4>Understanding Heart Rate Zones</h4>
+
+              <div class="hr-zones mt-lg">
+                <div class="hr-zone hr-zone-1">
+                  <div>
+                    <strong>Zone 1: Recovery</strong>
+                    <p class="text-sm mb-0">Very light effort. Full conversation possible. Active recovery, warm-up.</p>
+                  </div>
+                </div>
+                <div class="hr-zone hr-zone-2">
+                  <div>
+                    <strong>Zone 2: Aerobic Base</strong>
+                    <p class="text-sm mb-0">Light effort. Easy conversation. Builds aerobic foundation. 80% of training here.</p>
+                  </div>
+                </div>
+                <div class="hr-zone hr-zone-3">
+                  <div>
+                    <strong>Zone 3: Tempo</strong>
+                    <p class="text-sm mb-0">Moderate effort. Sentences only. Improves aerobic capacity.</p>
+                  </div>
+                </div>
+                <div class="hr-zone hr-zone-4">
+                  <div>
+                    <strong>Zone 4: Threshold</strong>
+                    <p class="text-sm mb-0">Hard effort. Short phrases only. Increases lactate threshold.</p>
+                  </div>
+                </div>
+                <div class="hr-zone hr-zone-5">
+                  <div>
+                    <strong>Zone 5: Maximum</strong>
+                    <p class="text-sm mb-0">Maximum effort. Can't talk. Sprint intervals, VO2 max work.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-lg">The Science Behind the Calculator</h2>
+
+      <div class="grid grid-2" style="gap: 2rem;">
+        <div class="card">
+          <div class="card-body">
+            <h4>Maximum Heart Rate Formula</h4>
+            <p>We use the <strong>Tanaka formula</strong> (2001), which is more accurate than the traditional 220-age:</p>
+            <div class="philosophy-box mt-md">
+              <p class="mb-0"><strong>Max HR = 208 - (0.7 × age)</strong></p>
+            </div>
+            <p class="text-sm text-gray mt-md">This formula was validated in a meta-analysis of 351 studies with 18,712 subjects.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h4>Heart Rate Reserve Method</h4>
+            <p>When you provide resting HR, we use the <strong>Karvonen method</strong> for more personalized zones:</p>
+            <div class="philosophy-box mt-md">
+              <p class="mb-0"><strong>Target HR = ((Max HR - Resting HR) × %intensity) + Resting HR</strong></p>
+            </div>
+            <p class="text-sm text-gray mt-md">This accounts for your individual fitness level through heart rate reserve (HRR).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning worldwide.</p>
+        </div>
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/beginner/">Beginner</a></li>
+            <li><a href="/workouts/hiit/">HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/cardiovascular-basics/">Cardio Basics</a></li>
+            <li><a href="/learn/heart-rate-training/">HR Zones</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/experts/">Expert Network</a></li>
+            <li><a href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

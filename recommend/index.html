@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find your perfect cardio workout. Our recommendation engine matches workouts to your time, equipment, location, and experience level.">
+  <title>Find Your Workout - Dynamic Recommendation Engine - ConditioningX</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ConditioningX Workout Finder",
+    "description": "Find personalized cardiovascular workouts based on time, equipment, and location",
+    "applicationCategory": "HealthApplication"
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding: 2rem 0;">
+    <div class="container text-center">
+      <h1>Find Your Perfect Workout</h1>
+      <p class="hero-subtitle">Tell us about your time, equipment, and environment. We'll find the perfect workout for you.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="recommender" style="max-width: 900px; margin: 0 auto;">
+        <!-- Progress Bar -->
+        <div class="recommender-progress">
+          <div class="recommender-progress-dot active"></div>
+          <div class="recommender-progress-dot"></div>
+          <div class="recommender-progress-dot"></div>
+          <div class="recommender-progress-dot"></div>
+          <div class="recommender-progress-dot"></div>
+        </div>
+
+        <!-- Step 1: Time -->
+        <div class="recommender-step active">
+          <h2 class="text-center mb-lg">How much time do you have?</h2>
+          <div class="option-grid time-options" data-selection="time">
+            <div class="option-card" data-value="5-10">
+              <div class="option-card-title">5-10 min</div>
+              <div class="option-card-desc">Micro Burst</div>
+              <p class="text-sm text-gray mt-sm">Very high intensity. Tabata, EMOM.</p>
+            </div>
+            <div class="option-card" data-value="15-20">
+              <div class="option-card-title">15-20 min</div>
+              <div class="option-card-desc">Quick Hit</div>
+              <p class="text-sm text-gray mt-sm">High intensity HIIT circuits.</p>
+            </div>
+            <div class="option-card" data-value="25-35">
+              <div class="option-card-title">25-35 min</div>
+              <div class="option-card-desc">Standard</div>
+              <p class="text-sm text-gray mt-sm">Moderate-high intensity sessions.</p>
+            </div>
+            <div class="option-card" data-value="40-50">
+              <div class="option-card-title">40-50 min</div>
+              <div class="option-card-desc">Full Session</div>
+              <p class="text-sm text-gray mt-sm">Complete workout with warm-up.</p>
+            </div>
+            <div class="option-card" data-value="60">
+              <div class="option-card-title">60+ min</div>
+              <div class="option-card-desc">Endurance</div>
+              <p class="text-sm text-gray mt-sm">Low-moderate endurance builds.</p>
+            </div>
+            <div class="option-card" data-value="90">
+              <div class="option-card-title">90+ min</div>
+              <div class="option-card-desc">Long Steady</div>
+              <p class="text-sm text-gray mt-sm">Low intensity long sessions.</p>
+            </div>
+          </div>
+          <div class="text-center mt-xl">
+            <button class="btn btn-primary btn-lg" data-action="next">Next: Equipment</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Equipment -->
+        <div class="recommender-step">
+          <h2 class="text-center mb-lg">What equipment do you have access to?</h2>
+          <div class="option-grid equipment-options" data-selection="equipment">
+            <div class="option-card" data-value="0">
+              <div class="option-card-icon">🏃</div>
+              <div class="option-card-title">None</div>
+              <div class="option-card-desc">Bodyweight only</div>
+              <p class="text-sm text-gray mt-sm">No furniture needed, silent options available.</p>
+            </div>
+            <div class="option-card" data-value="1">
+              <div class="option-card-icon">⚡</div>
+              <div class="option-card-title">Minimal</div>
+              <div class="option-card-desc">Jump rope, bands, mat</div>
+              <p class="text-sm text-gray mt-sm">Basic portable equipment.</p>
+            </div>
+            <div class="option-card" data-value="2">
+              <div class="option-card-icon">🏋️</div>
+              <div class="option-card-title">Home Basics</div>
+              <div class="option-card-desc">Dumbbells, kettlebell, pull-up bar</div>
+              <p class="text-sm text-gray mt-sm">Typical home setup.</p>
+            </div>
+            <div class="option-card" data-value="3">
+              <div class="option-card-icon">🏠</div>
+              <div class="option-card-title">Home Gym</div>
+              <div class="option-card-desc">Weights + cardio machine</div>
+              <p class="text-sm text-gray mt-sm">Rower, bike, or treadmill.</p>
+            </div>
+            <div class="option-card" data-value="4">
+              <div class="option-card-icon">🏢</div>
+              <div class="option-card-title">Full Gym</div>
+              <div class="option-card-desc">All equipment available</div>
+              <p class="text-sm text-gray mt-sm">Commercial gym, pool, track access.</p>
+            </div>
+          </div>
+          <div class="text-center mt-xl flex justify-center gap-md">
+            <button class="btn btn-outline" data-action="prev">Back</button>
+            <button class="btn btn-primary btn-lg" data-action="next">Next: Location</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Location -->
+        <div class="recommender-step">
+          <h2 class="text-center mb-lg">Where will you work out?</h2>
+          <div data-tabs>
+            <div class="tabs justify-center mb-lg">
+              <button class="tab active" data-target="indoor-locations">Indoor</button>
+              <button class="tab" data-target="outdoor-locations">Outdoor</button>
+            </div>
+            <div id="indoor-locations" class="tab-content active">
+              <div class="option-grid grid-4" data-selection="location">
+                <div class="option-card" data-value="apartment-small">
+                  <div class="option-card-icon">🏢</div>
+                  <div class="option-card-title">Small Apartment</div>
+                  <div class="option-card-desc">Silent, &lt;100 sq ft</div>
+                </div>
+                <div class="option-card" data-value="apartment-large">
+                  <div class="option-card-icon">🏢</div>
+                  <div class="option-card-title">Large Apartment</div>
+                  <div class="option-card-desc">Some noise OK</div>
+                </div>
+                <div class="option-card" data-value="house">
+                  <div class="option-card-icon">🏠</div>
+                  <div class="option-card-title">House</div>
+                  <div class="option-card-desc">Full freedom</div>
+                </div>
+                <div class="option-card" data-value="hotel">
+                  <div class="option-card-icon">🏨</div>
+                  <div class="option-card-title">Hotel Room</div>
+                  <div class="option-card-desc">Traveling</div>
+                </div>
+                <div class="option-card" data-value="dorm">
+                  <div class="option-card-icon">🛏️</div>
+                  <div class="option-card-title">Dorm Room</div>
+                  <div class="option-card-desc">Shared space</div>
+                </div>
+                <div class="option-card" data-value="office">
+                  <div class="option-card-icon">💼</div>
+                  <div class="option-card-title">Office</div>
+                  <div class="option-card-desc">Quick breaks</div>
+                </div>
+                <div class="option-card" data-value="gym-commercial">
+                  <div class="option-card-icon">🏋️</div>
+                  <div class="option-card-title">Gym</div>
+                  <div class="option-card-desc">Full equipment</div>
+                </div>
+                <div class="option-card" data-value="gym-crossfit">
+                  <div class="option-card-icon">🏆</div>
+                  <div class="option-card-title">CrossFit Box</div>
+                  <div class="option-card-desc">Functional fitness</div>
+                </div>
+              </div>
+            </div>
+            <div id="outdoor-locations" class="tab-content">
+              <div class="option-grid grid-4" data-selection="location">
+                <div class="option-card" data-value="city-streets">
+                  <div class="option-card-icon">🌆</div>
+                  <div class="option-card-title">City Streets</div>
+                  <div class="option-card-desc">Urban running</div>
+                </div>
+                <div class="option-card" data-value="park">
+                  <div class="option-card-icon">🌳</div>
+                  <div class="option-card-title">Park</div>
+                  <div class="option-card-desc">Open space</div>
+                </div>
+                <div class="option-card" data-value="beach">
+                  <div class="option-card-icon">🏖️</div>
+                  <div class="option-card-title">Beach</div>
+                  <div class="option-card-desc">Sand + water</div>
+                </div>
+                <div class="option-card" data-value="trail">
+                  <div class="option-card-icon">🥾</div>
+                  <div class="option-card-title">Trail</div>
+                  <div class="option-card-desc">Nature</div>
+                </div>
+                <div class="option-card" data-value="track">
+                  <div class="option-card-icon">🏟️</div>
+                  <div class="option-card-title">Track</div>
+                  <div class="option-card-desc">Measured</div>
+                </div>
+                <div class="option-card" data-value="pool">
+                  <div class="option-card-icon">🏊</div>
+                  <div class="option-card-title">Pool</div>
+                  <div class="option-card-desc">Swimming</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-xl flex justify-center gap-md">
+            <button class="btn btn-outline" data-action="prev">Back</button>
+            <button class="btn btn-primary btn-lg" data-action="next">Next: Experience</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Experience -->
+        <div class="recommender-step">
+          <h2 class="text-center mb-lg">What's your experience level?</h2>
+          <div class="option-grid grid-3" data-selection="experience" style="max-width: 800px; margin: 0 auto;">
+            <div class="option-card" data-value="beginner">
+              <div class="option-card-icon">🌱</div>
+              <div class="option-card-title">Beginner</div>
+              <div class="option-card-desc">0-6 months</div>
+              <p class="text-sm text-gray mt-sm">New to regular cardio. Building habits and form.</p>
+            </div>
+            <div class="option-card" data-value="intermediate">
+              <div class="option-card-icon">🌿</div>
+              <div class="option-card-title">Intermediate</div>
+              <div class="option-card-desc">6-24 months</div>
+              <p class="text-sm text-gray mt-sm">Consistent training. Ready for more intensity.</p>
+            </div>
+            <div class="option-card" data-value="advanced">
+              <div class="option-card-icon">🌳</div>
+              <div class="option-card-title">Advanced</div>
+              <div class="option-card-desc">2+ years</div>
+              <p class="text-sm text-gray mt-sm">Experienced. Optimizing performance.</p>
+            </div>
+          </div>
+          <div class="text-center mt-xl flex justify-center gap-md">
+            <button class="btn btn-outline" data-action="prev">Back</button>
+            <button class="btn btn-primary btn-lg" data-action="next">Next: Goals</button>
+          </div>
+        </div>
+
+        <!-- Step 5: Goal -->
+        <div class="recommender-step">
+          <h2 class="text-center mb-lg">What's your primary goal today?</h2>
+          <div class="option-grid grid-4" data-selection="goal" style="max-width: 900px; margin: 0 auto;">
+            <div class="option-card" data-value="health">
+              <div class="option-card-icon">❤️</div>
+              <div class="option-card-title">General Health</div>
+              <div class="option-card-desc">Well-rounded</div>
+              <p class="text-sm text-gray mt-sm">Sustainable, balanced fitness.</p>
+            </div>
+            <div class="option-card" data-value="sport">
+              <div class="option-card-icon">⚽</div>
+              <div class="option-card-title">Sport Performance</div>
+              <div class="option-card-desc">Athletic</div>
+              <p class="text-sm text-gray mt-sm">Sport-specific conditioning.</p>
+            </div>
+            <div class="option-card" data-value="mental">
+              <div class="option-card-icon">🧠</div>
+              <div class="option-card-title">Mental Health</div>
+              <div class="option-card-desc">Mood boost</div>
+              <p class="text-sm text-gray mt-sm">Stress relief, endorphins.</p>
+            </div>
+            <div class="option-card" data-value="social">
+              <div class="option-card-icon">👥</div>
+              <div class="option-card-title">Social</div>
+              <div class="option-card-desc">Partner/group</div>
+              <p class="text-sm text-gray mt-sm">Workouts for 2+.</p>
+            </div>
+          </div>
+          <div class="text-center mt-xl flex justify-center gap-md">
+            <button class="btn btn-outline" data-action="prev">Back</button>
+            <button class="btn btn-primary btn-lg" data-action="next">Get My Workouts</button>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="recommender-results"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-lg">How the Recommendation Engine Works</h2>
+      <div class="grid grid-4">
+        <div class="text-center">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏱️</div>
+          <h4>Time Available</h4>
+          <p class="text-sm text-gray">From 5-minute micro bursts to 90+ minute endurance sessions.</p>
+        </div>
+        <div class="text-center">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏋️</div>
+          <h4>Equipment Access</h4>
+          <p class="text-sm text-gray">Bodyweight only to full gym with all equipment.</p>
+        </div>
+        <div class="text-center">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📍</div>
+          <h4>Location</h4>
+          <p class="text-sm text-gray">20+ environments from apartments to trails to pools.</p>
+        </div>
+        <div class="text-center">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📈</div>
+          <h4>Experience</h4>
+          <p class="text-sm text-gray">Matched to your current fitness level and goals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning worldwide.</p>
+        </div>
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/beginner/">Beginner</a></li>
+            <li><a href="/workouts/hiit/">HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/cardiovascular-basics/">Cardio Basics</a></li>
+            <li><a href="/learn/female-training/">Female Training</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/experts/">Expert Network</a></li>
+            <li><a href="/programs/">Programs</a></li>
+            <li><a href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
