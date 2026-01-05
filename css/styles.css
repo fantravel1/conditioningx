@@ -738,6 +738,37 @@ ul {
   color: var(--gray-500);
 }
 
+/* Scroll hint for mobile sliders */
+.scroll-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin-top: var(--spacing-sm);
+  animation: fadeInOut 3s ease-in-out;
+}
+
+.scroll-hint::before {
+  content: '←';
+}
+
+.scroll-hint::after {
+  content: '→';
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@media (min-width: 640px) {
+  .scroll-hint {
+    display: none;
+  }
+}
+
 /* Time Selector - Horizontal slider on mobile */
 .time-options {
   display: flex;
@@ -748,7 +779,7 @@ ul {
   padding-bottom: var(--spacing-sm);
   margin: 0 calc(-1 * var(--spacing-md));
   padding-left: var(--spacing-md);
-  padding-right: var(--spacing-md);
+  padding-right: var(--spacing-xs); /* Less padding to show partial cards */
 }
 
 .time-options::-webkit-scrollbar {
@@ -803,7 +834,7 @@ ul {
   padding-bottom: var(--spacing-sm);
   margin: 0 calc(-1 * var(--spacing-md));
   padding-left: var(--spacing-md);
-  padding-right: var(--spacing-md);
+  padding-right: var(--spacing-xs); /* Less padding to show partial cards */
 }
 
 .equipment-options::-webkit-scrollbar {
@@ -858,7 +889,7 @@ ul {
   padding-bottom: var(--spacing-sm);
   margin: 0 calc(-1 * var(--spacing-md));
   padding-left: var(--spacing-md);
-  padding-right: var(--spacing-md);
+  padding-right: var(--spacing-xs); /* Less padding to show partial cards */
 }
 
 .option-grid.grid-4::-webkit-scrollbar {
