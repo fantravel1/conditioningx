@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free interval timer for HIIT, Tabata, EMOM, and custom interval workouts. Customizable work and rest periods with audio cues.">
+  <title>Interval Timer - ConditioningX</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Interval Timer",
+    "description": "Customizable interval timer for HIIT, Tabata, and EMOM workouts",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    .timer-display {
+      font-size: 8rem;
+      font-weight: 700;
+      font-family: monospace;
+      line-height: 1;
+    }
+    .timer-phase {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .timer-work { color: var(--success); }
+    .timer-rest { color: var(--primary); }
+    .timer-prep { color: var(--warning); }
+    .timer-done { color: var(--gray-500); }
+    .timer-card {
+      background: var(--gray-900);
+      color: white;
+      border-radius: 1rem;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .timer-controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .timer-controls .btn {
+      min-width: 100px;
+    }
+    .preset-card {
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .preset-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .preset-card.active {
+      border: 2px solid var(--primary);
+    }
+    @media (max-width: 600px) {
+      .timer-display {
+        font-size: 5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <p class="text-sm mb-md"><a href="/tools/">Tools</a> / Interval Timer</p>
+      <h1>Interval Timer</h1>
+      <p class="text-gray">Customizable timer for HIIT, Tabata, EMOM, and custom interval workouts.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2" style="gap: 3rem; align-items: start;">
+        <div>
+          <!-- Timer Display -->
+          <div class="timer-card" id="timer-card">
+            <div id="timer-phase" class="timer-phase timer-prep">Get Ready</div>
+            <div id="timer-display" class="timer-display">0:10</div>
+            <div id="timer-info" class="mt-md text-gray">
+              Round <span id="current-round">1</span> of <span id="total-rounds">8</span>
+            </div>
+            <div class="timer-controls">
+              <button id="start-btn" class="btn btn-primary btn-lg">Start</button>
+              <button id="pause-btn" class="btn btn-outline btn-lg hidden">Pause</button>
+              <button id="reset-btn" class="btn btn-outline btn-lg">Reset</button>
+            </div>
+          </div>
+
+          <!-- Sound Toggle -->
+          <div class="card mt-lg">
+            <div class="card-body">
+              <div class="flex justify-between" style="align-items: center;">
+                <div>
+                  <h4 class="mb-0">Sound Alerts</h4>
+                  <p class="text-sm text-gray mb-0">Audio cues for work/rest transitions</p>
+                </div>
+                <label class="flex gap-sm" style="cursor: pointer;">
+                  <input type="checkbox" id="sound-toggle" checked>
+                  <span>On</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- Presets -->
+          <h3 class="mb-md">Quick Presets</h3>
+          <div class="grid grid-2 mb-xl" style="gap: 1rem;">
+            <div class="card preset-card active" data-preset="tabata">
+              <div class="card-body">
+                <h4 class="mb-sm">Tabata</h4>
+                <p class="text-sm text-gray mb-0">20s work / 10s rest<br>8 rounds (4 min)</p>
+              </div>
+            </div>
+            <div class="card preset-card" data-preset="hiit30">
+              <div class="card-body">
+                <h4 class="mb-sm">HIIT 30/30</h4>
+                <p class="text-sm text-gray mb-0">30s work / 30s rest<br>10 rounds (10 min)</p>
+              </div>
+            </div>
+            <div class="card preset-card" data-preset="emom">
+              <div class="card-body">
+                <h4 class="mb-sm">EMOM</h4>
+                <p class="text-sm text-gray mb-0">60s intervals<br>10 rounds (10 min)</p>
+              </div>
+            </div>
+            <div class="card preset-card" data-preset="custom">
+              <div class="card-body">
+                <h4 class="mb-sm">Custom</h4>
+                <p class="text-sm text-gray mb-0">Set your own<br>intervals below</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Settings -->
+          <div class="card" id="custom-settings">
+            <div class="card-body">
+              <h4 class="mb-lg">Timer Settings</h4>
+
+              <div class="form-group">
+                <label class="form-label">Prepare Time (seconds)</label>
+                <input type="number" id="prep-time" class="form-input" value="10" min="0" max="60">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Work Time (seconds)</label>
+                <input type="number" id="work-time" class="form-input" value="20" min="5" max="300">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Rest Time (seconds)</label>
+                <input type="number" id="rest-time" class="form-input" value="10" min="0" max="300">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Number of Rounds</label>
+                <input type="number" id="rounds" class="form-input" value="8" min="1" max="50">
+              </div>
+
+              <div class="philosophy-box mt-lg">
+                <p class="mb-0"><strong>Total Time:</strong> <span id="total-time">4:00</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-lg">Popular Interval Protocols</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-body">
+            <h4>Tabata Protocol</h4>
+            <p class="text-sm text-gray">The original HIIT study: 20 seconds all-out effort, 10 seconds rest, 8 rounds. Proven to improve both aerobic and anaerobic capacity in just 4 minutes.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h4>EMOM (Every Minute)</h4>
+            <p class="text-sm text-gray">Perform a set number of reps at the start of each minute. Rest for the remainder. Great for maintaining quality across sets.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h4>30/30 Intervals</h4>
+            <p class="text-sm text-gray">Equal work and rest periods. Good balance of intensity and recovery. Excellent for building aerobic power.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning worldwide.</p>
+        </div>
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/hiit/">HIIT</a></li>
+            <li><a href="/workouts/bodyweight/">Bodyweight</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/energy-systems/">Energy Systems</a></li>
+            <li><a href="/learn/heart-rate-training/">HR Zones</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/programs/">Programs</a></li>
+            <li><a href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Timer state
+    let timerState = {
+      phase: 'prep', // prep, work, rest, done
+      currentRound: 1,
+      secondsRemaining: 10,
+      isRunning: false,
+      intervalId: null,
+      settings: {
+        prepTime: 10,
+        workTime: 20,
+        restTime: 10,
+        rounds: 8
+      }
+    };
+
+    // DOM elements
+    const timerDisplay = document.getElementById('timer-display');
+    const timerPhase = document.getElementById('timer-phase');
+    const timerCard = document.getElementById('timer-card');
+    const currentRoundEl = document.getElementById('current-round');
+    const totalRoundsEl = document.getElementById('total-rounds');
+    const startBtn = document.getElementById('start-btn');
+    const pauseBtn = document.getElementById('pause-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const soundToggle = document.getElementById('sound-toggle');
+
+    // Input elements
+    const prepTimeInput = document.getElementById('prep-time');
+    const workTimeInput = document.getElementById('work-time');
+    const restTimeInput = document.getElementById('rest-time');
+    const roundsInput = document.getElementById('rounds');
+    const totalTimeEl = document.getElementById('total-time');
+
+    // Presets
+    const presets = {
+      tabata: { prepTime: 10, workTime: 20, restTime: 10, rounds: 8 },
+      hiit30: { prepTime: 10, workTime: 30, restTime: 30, rounds: 10 },
+      emom: { prepTime: 10, workTime: 60, restTime: 0, rounds: 10 },
+      custom: { prepTime: 10, workTime: 20, restTime: 10, rounds: 8 }
+    };
+
+    // Audio context for beeps
+    let audioContext;
+    function initAudio() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playBeep(frequency = 800, duration = 150) {
+      if (!soundToggle.checked) return;
+      initAudio();
+
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+
+      oscillator.frequency.value = frequency;
+      oscillator.type = 'sine';
+
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration / 1000);
+
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + duration / 1000);
+    }
+
+    function playWorkBeep() {
+      playBeep(1000, 200);
+      setTimeout(() => playBeep(1000, 200), 250);
+    }
+
+    function playRestBeep() {
+      playBeep(600, 300);
+    }
+
+    function playDoneBeep() {
+      playBeep(800, 150);
+      setTimeout(() => playBeep(1000, 150), 200);
+      setTimeout(() => playBeep(1200, 300), 400);
+    }
+
+    function playCountdownBeep() {
+      playBeep(500, 100);
+    }
+
+    // Format time as M:SS
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins}:${String(secs).padStart(2, '0')}`;
+    }
+
+    // Update display
+    function updateDisplay() {
+      timerDisplay.textContent = formatTime(timerState.secondsRemaining);
+      currentRoundEl.textContent = timerState.currentRound;
+      totalRoundsEl.textContent = timerState.settings.rounds;
+
+      // Update phase display
+      timerPhase.className = 'timer-phase';
+      switch (timerState.phase) {
+        case 'prep':
+          timerPhase.textContent = 'Get Ready';
+          timerPhase.classList.add('timer-prep');
+          break;
+        case 'work':
+          timerPhase.textContent = 'Work!';
+          timerPhase.classList.add('timer-work');
+          break;
+        case 'rest':
+          timerPhase.textContent = 'Rest';
+          timerPhase.classList.add('timer-rest');
+          break;
+        case 'done':
+          timerPhase.textContent = 'Done!';
+          timerPhase.classList.add('timer-done');
+          break;
+      }
+    }
+
+    // Calculate total time
+    function calculateTotalTime() {
+      const settings = timerState.settings;
+      const total = settings.prepTime + (settings.workTime + settings.restTime) * settings.rounds;
+      totalTimeEl.textContent = formatTime(total);
+    }
+
+    // Reset timer
+    function resetTimer() {
+      stopTimer();
+      timerState.phase = 'prep';
+      timerState.currentRound = 1;
+      timerState.secondsRemaining = timerState.settings.prepTime || 1;
+      updateDisplay();
+      startBtn.classList.remove('hidden');
+      pauseBtn.classList.add('hidden');
+    }
+
+    // Start timer
+    function startTimer() {
+      if (timerState.isRunning) return;
+
+      initAudio();
+      timerState.isRunning = true;
+      startBtn.classList.add('hidden');
+      pauseBtn.classList.remove('hidden');
+      pauseBtn.textContent = 'Pause';
+
+      timerState.intervalId = setInterval(tick, 1000);
+    }
+
+    // Pause timer
+    function pauseTimer() {
+      timerState.isRunning = false;
+      pauseBtn.textContent = 'Resume';
+      clearInterval(timerState.intervalId);
+    }
+
+    // Stop timer
+    function stopTimer() {
+      timerState.isRunning = false;
+      clearInterval(timerState.intervalId);
+    }
+
+    // Timer tick
+    function tick() {
+      timerState.secondsRemaining--;
+
+      // Countdown beeps in last 3 seconds
+      if (timerState.secondsRemaining <= 3 && timerState.secondsRemaining > 0 && timerState.phase !== 'done') {
+        playCountdownBeep();
+      }
+
+      if (timerState.secondsRemaining <= 0) {
+        // Move to next phase
+        switch (timerState.phase) {
+          case 'prep':
+            timerState.phase = 'work';
+            timerState.secondsRemaining = timerState.settings.workTime;
+            playWorkBeep();
+            break;
+          case 'work':
+            if (timerState.settings.restTime > 0) {
+              timerState.phase = 'rest';
+              timerState.secondsRemaining = timerState.settings.restTime;
+              playRestBeep();
+            } else {
+              // No rest, go to next round or done
+              if (timerState.currentRound < timerState.settings.rounds) {
+                timerState.currentRound++;
+                timerState.secondsRemaining = timerState.settings.workTime;
+                playWorkBeep();
+              } else {
+                timerState.phase = 'done';
+                timerState.secondsRemaining = 0;
+                stopTimer();
+                playDoneBeep();
+                startBtn.classList.remove('hidden');
+                pauseBtn.classList.add('hidden');
+              }
+            }
+            break;
+          case 'rest':
+            if (timerState.currentRound < timerState.settings.rounds) {
+              timerState.currentRound++;
+              timerState.phase = 'work';
+              timerState.secondsRemaining = timerState.settings.workTime;
+              playWorkBeep();
+            } else {
+              timerState.phase = 'done';
+              timerState.secondsRemaining = 0;
+              stopTimer();
+              playDoneBeep();
+              startBtn.classList.remove('hidden');
+              pauseBtn.classList.add('hidden');
+            }
+            break;
+        }
+      }
+
+      updateDisplay();
+    }
+
+    // Apply preset
+    function applyPreset(presetName) {
+      const preset = presets[presetName];
+      timerState.settings = { ...preset };
+
+      prepTimeInput.value = preset.prepTime;
+      workTimeInput.value = preset.workTime;
+      restTimeInput.value = preset.restTime;
+      roundsInput.value = preset.rounds;
+
+      // Update active preset card
+      document.querySelectorAll('.preset-card').forEach(card => {
+        card.classList.remove('active');
+        if (card.dataset.preset === presetName) {
+          card.classList.add('active');
+        }
+      });
+
+      calculateTotalTime();
+      resetTimer();
+    }
+
+    // Update settings from inputs
+    function updateSettings() {
+      timerState.settings.prepTime = parseInt(prepTimeInput.value) || 0;
+      timerState.settings.workTime = parseInt(workTimeInput.value) || 20;
+      timerState.settings.restTime = parseInt(restTimeInput.value) || 0;
+      timerState.settings.rounds = parseInt(roundsInput.value) || 1;
+
+      // Mark custom as active
+      document.querySelectorAll('.preset-card').forEach(card => {
+        card.classList.remove('active');
+        if (card.dataset.preset === 'custom') {
+          card.classList.add('active');
+        }
+      });
+
+      calculateTotalTime();
+      resetTimer();
+    }
+
+    // Event listeners
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', function() {
+      if (timerState.isRunning) {
+        pauseTimer();
+      } else {
+        startTimer();
+      }
+    });
+    resetBtn.addEventListener('click', resetTimer);
+
+    document.querySelectorAll('.preset-card').forEach(card => {
+      card.addEventListener('click', () => applyPreset(card.dataset.preset));
+    });
+
+    [prepTimeInput, workTimeInput, restTimeInput, roundsInput].forEach(input => {
+      input.addEventListener('change', updateSettings);
+    });
+
+    // Initialize
+    calculateTotalTime();
+    updateDisplay();
+  </script>
+</body>
+</html>

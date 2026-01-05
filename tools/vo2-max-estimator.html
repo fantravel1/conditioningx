@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free VO2 max estimator. Estimate your cardiovascular fitness using the Cooper test, Rockport walk test, or step test.">
+  <title>VO2 Max Estimator - ConditioningX</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "VO2 Max Estimator",
+    "description": "Estimate your VO2 max using validated fitness tests",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <p class="text-sm mb-md"><a href="/tools/">Tools</a> / VO2 Max Estimator</p>
+      <h1>VO2 Max Estimator</h1>
+      <p class="text-gray">Estimate your cardiovascular fitness level using validated field tests.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2" style="gap: 3rem; align-items: start;">
+        <div>
+          <div data-tabs>
+            <div class="tabs mb-lg">
+              <button class="tab active" data-target="cooper-test">Cooper Test</button>
+              <button class="tab" data-target="rockport-test">Rockport Walk</button>
+              <button class="tab" data-target="age-test">Age-Based</button>
+            </div>
+
+            <!-- Cooper Test -->
+            <div id="cooper-test" class="tab-content active">
+              <div class="card">
+                <div class="card-body">
+                  <h3>Cooper 12-Minute Run Test</h3>
+                  <p class="text-gray mb-lg">Run as far as you can in 12 minutes on a flat surface (track ideal).</p>
+
+                  <form id="cooper-form">
+                    <div class="form-group">
+                      <label class="form-label" for="cooper-distance">Distance Covered *</label>
+                      <div class="flex gap-md">
+                        <input type="number" id="cooper-distance" class="form-input" placeholder="e.g., 2400" min="800" max="4000" required style="flex: 2;">
+                        <select id="cooper-unit" class="form-input" style="flex: 1;">
+                          <option value="meters">meters</option>
+                          <option value="miles">miles</option>
+                        </select>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Calculate VO2 Max</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rockport Walk Test -->
+            <div id="rockport-test" class="tab-content">
+              <div class="card">
+                <div class="card-body">
+                  <h3>Rockport 1-Mile Walk Test</h3>
+                  <p class="text-gray mb-lg">Walk 1 mile as fast as possible. Record your time and heart rate at finish.</p>
+
+                  <form id="rockport-form">
+                    <div class="form-group">
+                      <label class="form-label" for="rockport-time">Time to Complete 1 Mile *</label>
+                      <div class="flex gap-md">
+                        <input type="number" id="rockport-minutes" class="form-input" placeholder="min" min="8" max="30" required>
+                        <input type="number" id="rockport-seconds" class="form-input" placeholder="sec" min="0" max="59" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="rockport-hr">Heart Rate at Finish (bpm) *</label>
+                      <input type="number" id="rockport-hr" class="form-input" placeholder="e.g., 140" min="80" max="200" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="rockport-age">Age *</label>
+                      <input type="number" id="rockport-age" class="form-input" placeholder="e.g., 25" min="13" max="80" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="rockport-weight">Weight *</label>
+                      <div class="flex gap-md">
+                        <input type="number" id="rockport-weight" class="form-input" placeholder="e.g., 150" min="80" max="400" required style="flex: 2;">
+                        <select id="rockport-weight-unit" class="form-input" style="flex: 1;">
+                          <option value="lbs">lbs</option>
+                          <option value="kg">kg</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Sex *</label>
+                      <div class="flex gap-md">
+                        <label class="flex gap-sm" style="cursor: pointer;">
+                          <input type="radio" name="rockport-sex" value="male" required> Male
+                        </label>
+                        <label class="flex gap-sm" style="cursor: pointer;">
+                          <input type="radio" name="rockport-sex" value="female"> Female
+                        </label>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Calculate VO2 Max</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Age-Based Estimate -->
+            <div id="age-test" class="tab-content">
+              <div class="card">
+                <div class="card-body">
+                  <h3>Age-Based Estimate</h3>
+                  <p class="text-gray mb-lg">Quick estimate based on age and activity level. Less accurate than field tests.</p>
+
+                  <form id="age-form">
+                    <div class="form-group">
+                      <label class="form-label" for="age-age">Age *</label>
+                      <input type="number" id="age-age" class="form-input" placeholder="e.g., 25" min="13" max="80" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Sex *</label>
+                      <div class="flex gap-md">
+                        <label class="flex gap-sm" style="cursor: pointer;">
+                          <input type="radio" name="age-sex" value="male" required> Male
+                        </label>
+                        <label class="flex gap-sm" style="cursor: pointer;">
+                          <input type="radio" name="age-sex" value="female"> Female
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="age-activity">Activity Level *</label>
+                      <select id="age-activity" class="form-input" required>
+                        <option value="">Select your activity level</option>
+                        <option value="sedentary">Sedentary (little or no exercise)</option>
+                        <option value="light">Light (1-3 days/week)</option>
+                        <option value="moderate">Moderate (3-5 days/week)</option>
+                        <option value="active">Active (6-7 days/week)</option>
+                        <option value="athlete">Athlete (intense training)</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Estimate VO2 Max</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div id="vo2-results" class="hidden">
+            <!-- Results will be inserted here -->
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h4>VO2 Max Fitness Categories</h4>
+              <p class="text-sm text-gray mb-lg">Values in ml/kg/min. Categories vary by age and sex.</p>
+
+              <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--gray-200);">
+                    <th style="text-align: left; padding: 0.5rem;">Category</th>
+                    <th style="text-align: center; padding: 0.5rem;">Men (20-29)</th>
+                    <th style="text-align: center; padding: 0.5rem;">Women (20-29)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">Superior</td>
+                    <td style="text-align: center; padding: 0.5rem;">&gt;55</td>
+                    <td style="text-align: center; padding: 0.5rem;">&gt;49</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">Excellent</td>
+                    <td style="text-align: center; padding: 0.5rem;">51-55</td>
+                    <td style="text-align: center; padding: 0.5rem;">44-49</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">Good</td>
+                    <td style="text-align: center; padding: 0.5rem;">45-50</td>
+                    <td style="text-align: center; padding: 0.5rem;">39-43</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">Fair</td>
+                    <td style="text-align: center; padding: 0.5rem;">39-44</td>
+                    <td style="text-align: center; padding: 0.5rem;">34-38</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 0.5rem;">Poor</td>
+                    <td style="text-align: center; padding: 0.5rem;">&lt;39</td>
+                    <td style="text-align: center; padding: 0.5rem;">&lt;34</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card mt-lg">
+            <div class="card-body">
+              <h4>What is VO2 Max?</h4>
+              <p>VO2 max is the maximum rate at which your body can use oxygen during intense exercise. It's considered the gold standard measure of cardiovascular fitness.</p>
+              <p class="mb-0 mt-md"><strong>Higher VO2 max = better endurance performance and cardiovascular health.</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-lg">Improving Your VO2 Max</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-body">
+            <h4>Zone 2 Training</h4>
+            <p class="text-gray">Build your aerobic base with 80% of training at low intensity (conversational pace). This builds mitochondria and capillary density.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h4>High-Intensity Intervals</h4>
+            <p class="text-gray">Include 1-2 sessions per week of intervals at 90-100% max HR. 4x4 minute intervals with 3-4 min recovery is highly effective.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h4>Consistency</h4>
+            <p class="text-gray">VO2 max improves 5-20% over 8-12 weeks with consistent training. Beginners see the largest gains.</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-xl">
+        <a href="/learn/vo2-max/" class="btn btn-primary">Learn More About VO2 Max</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning worldwide.</p>
+        </div>
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/beginner/">Beginner</a></li>
+            <li><a href="/workouts/hiit/">HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/cardiovascular-basics/">Cardio Basics</a></li>
+            <li><a href="/learn/vo2-max/">VO2 Max</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/experts/">Expert Network</a></li>
+            <li><a href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Cooper Test Calculator
+    document.getElementById('cooper-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let distance = parseFloat(document.getElementById('cooper-distance').value);
+      const unit = document.getElementById('cooper-unit').value;
+
+      // Convert to meters if needed
+      if (unit === 'miles') {
+        distance = distance * 1609.34;
+      }
+
+      // Cooper formula: VO2max = (distance - 504.9) / 44.73
+      const vo2max = (distance - 504.9) / 44.73;
+      displayResult(vo2max, 'Cooper 12-Minute Run Test');
+    });
+
+    // Rockport Walk Test Calculator
+    document.getElementById('rockport-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const minutes = parseInt(document.getElementById('rockport-minutes').value);
+      const seconds = parseInt(document.getElementById('rockport-seconds').value);
+      const time = minutes + (seconds / 60);
+      const hr = parseInt(document.getElementById('rockport-hr').value);
+      const age = parseInt(document.getElementById('rockport-age').value);
+      let weight = parseFloat(document.getElementById('rockport-weight').value);
+      const weightUnit = document.getElementById('rockport-weight-unit').value;
+      const sex = document.querySelector('input[name="rockport-sex"]:checked').value;
+
+      // Convert to lbs if needed
+      if (weightUnit === 'kg') {
+        weight = weight * 2.20462;
+      }
+
+      const sexValue = sex === 'male' ? 1 : 0;
+
+      // Rockport formula
+      const vo2max = 132.853 - (0.0769 * weight) - (0.3877 * age) + (6.315 * sexValue) - (3.2649 * time) - (0.1565 * hr);
+      displayResult(vo2max, 'Rockport 1-Mile Walk Test');
+    });
+
+    // Age-Based Estimate
+    document.getElementById('age-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const age = parseInt(document.getElementById('age-age').value);
+      const sex = document.querySelector('input[name="age-sex"]:checked').value;
+      const activity = document.getElementById('age-activity').value;
+
+      // Base values by sex (for age 20)
+      let baseVO2 = sex === 'male' ? 45 : 38;
+
+      // Adjust for activity level
+      const activityMultipliers = {
+        'sedentary': 0.75,
+        'light': 0.90,
+        'moderate': 1.0,
+        'active': 1.10,
+        'athlete': 1.25
+      };
+      baseVO2 *= activityMultipliers[activity];
+
+      // Age decline (approximately 1% per year after 25)
+      if (age > 25) {
+        baseVO2 *= Math.pow(0.99, age - 25);
+      }
+
+      displayResult(baseVO2, 'Age-Based Estimate (approximate)');
+    });
+
+    function displayResult(vo2max, testName) {
+      const vo2Rounded = Math.round(vo2max * 10) / 10;
+      let category, categoryClass;
+
+      if (vo2max >= 55) {
+        category = 'Superior';
+        categoryClass = 'hr-zone-5';
+      } else if (vo2max >= 45) {
+        category = 'Excellent';
+        categoryClass = 'hr-zone-4';
+      } else if (vo2max >= 38) {
+        category = 'Good';
+        categoryClass = 'hr-zone-3';
+      } else if (vo2max >= 32) {
+        category = 'Fair';
+        categoryClass = 'hr-zone-2';
+      } else {
+        category = 'Poor';
+        categoryClass = 'hr-zone-1';
+      }
+
+      const resultsDiv = document.getElementById('vo2-results');
+      resultsDiv.innerHTML = `
+        <div class="card mb-lg" style="border: 2px solid var(--primary);">
+          <div class="card-body text-center">
+            <p class="text-sm text-gray mb-sm">${testName}</p>
+            <div style="font-size: 3.5rem; font-weight: 700; color: var(--primary);">${vo2Rounded}</div>
+            <p class="text-gray">ml/kg/min</p>
+            <div class="hr-zone ${categoryClass} mt-lg" style="justify-content: center;">
+              <strong>${category} Fitness Level</strong>
+            </div>
+          </div>
+        </div>
+      `;
+      resultsDiv.classList.remove('hidden');
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>
