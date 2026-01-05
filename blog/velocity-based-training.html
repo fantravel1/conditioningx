@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Velocity-Based Training (VBT): how bar speed changes how we train. Autoregulation, daily readiness, and practical implementation.">
+  <title>Velocity-Based Training: Real-Time Autoregulation - ConditioningX</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <article>
+    <header class="section" style="background: var(--gray-50);">
+      <div class="container">
+        <p class="text-sm mb-md"><a href="/blog/">Blog</a> / Tech & Data-Driven Training</p>
+        <div class="article-header-icon" style="margin-bottom: 1rem;">
+          <img src="../images/icons/hiit.svg" alt="" style="width: 64px; height: 64px; opacity: 0.8;">
+        </div>
+        <h1>Velocity-Based Training: Real-Time Autoregulation</h1>
+        <p class="text-gray mt-md">How bar speed is revolutionizing strength training. Train at the right intensity every session, based on how you're actually performing.</p>
+        <div class="tags mt-lg">
+          <span class="tag">Strength</span>
+          <span class="tag">VBT</span>
+          <span class="tag">Technology</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container" style="max-width: 800px;">
+
+        <h2>The Problem with Percentage-Based Training</h2>
+        <p>Traditional strength programming prescribes loads based on percentages of your 1 rep max (1RM). "Squat 80% for 5 sets of 5." Simple, but flawed.</p>
+
+        <p>Your true max fluctuates daily based on:</p>
+        <ul style="margin-left: 1.5rem;">
+          <li class="mb-sm">Sleep quality and quantity</li>
+          <li class="mb-sm">Nutrition and hydration</li>
+          <li class="mb-sm">Life stress</li>
+          <li class="mb-sm">Accumulated training fatigue</li>
+          <li class="mb-sm">Time of day</li>
+          <li class="mb-sm">Illness or minor injuries</li>
+        </ul>
+
+        <p>Your tested 1RM might be 400 lbs, but today it might be 380 or 420 depending on these factors. Training at 80% of 400 (320 lbs) might be too heavy one day and too light another.</p>
+
+        <div class="philosophy-box mt-lg mb-lg">
+          <h4>The VBT Solution</h4>
+          <p class="mb-0">Instead of prescribing load based on a historical max, prescribe based on bar speed today. If you're supposed to train at a velocity corresponding to 80%, load until you hit that velocity — regardless of what the weight actually is.</p>
+        </div>
+
+        <h2>How VBT Works</h2>
+
+        <h3>The Velocity-Load Relationship</h3>
+        <p>There's a predictable inverse relationship between load and bar velocity: heavier weights move slower. Each percentage of your 1RM corresponds to a specific velocity zone.</p>
+
+        <div class="card mb-lg">
+          <div class="card-body">
+            <h4>Velocity Zones (Approximate)</h4>
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--gray-200);">
+                  <th style="text-align: left; padding: 0.75rem;">% 1RM</th>
+                  <th style="text-align: center; padding: 0.75rem;">Velocity (m/s)</th>
+                  <th style="text-align: left; padding: 0.75rem;">Training Goal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 0.75rem;">30-50%</td>
+                  <td style="text-align: center; padding: 0.75rem;">1.0-1.3+</td>
+                  <td style="padding: 0.75rem;">Speed/power</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 0.75rem;">50-65%</td>
+                  <td style="text-align: center; padding: 0.75rem;">0.75-1.0</td>
+                  <td style="padding: 0.75rem;">Speed-strength</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 0.75rem;">65-80%</td>
+                  <td style="text-align: center; padding: 0.75rem;">0.5-0.75</td>
+                  <td style="padding: 0.75rem;">Strength-speed</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 0.75rem;">80-90%</td>
+                  <td style="text-align: center; padding: 0.75rem;">0.3-0.5</td>
+                  <td style="padding: 0.75rem;">Strength</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.75rem;">90%+</td>
+                  <td style="text-align: center; padding: 0.75rem;">&lt;0.3</td>
+                  <td style="padding: 0.75rem;">Max strength</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="text-sm text-gray mt-md">These values vary by exercise and individual. Use as starting points.</p>
+          </div>
+        </div>
+
+        <h3>Daily Autoregulation</h3>
+        <p>Instead of loading 80% (320 lbs), you load until bar velocity reaches 0.45-0.5 m/s. On a good day, that might be 330 lbs. On a rough day, it might be 305 lbs. Either way, you're training at the intended intensity.</p>
+
+        <h2>VBT Devices</h2>
+
+        <div class="card mb-lg">
+          <div class="card-body">
+            <h4>Device Comparison</h4>
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--gray-200);">
+                  <th style="text-align: left; padding: 0.75rem;">Device</th>
+                  <th style="text-align: left; padding: 0.75rem;">Type</th>
+                  <th style="text-align: left; padding: 0.75rem;">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 0.75rem;"><strong>GymAware</strong></td>
+                  <td style="padding: 0.75rem;">Linear position transducer</td>
+                  <td style="padding: 0.75rem;">~$2,000+</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 0.75rem;"><strong>Tendo Unit</strong></td>
+                  <td style="padding: 0.75rem;">Linear position transducer</td>
+                  <td style="padding: 0.75rem;">~$1,500</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 0.75rem;"><strong>PUSH Band</strong></td>
+                  <td style="padding: 0.75rem;">Accelerometer (wrist/bar)</td>
+                  <td style="padding: 0.75rem;">~$300-500</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 0.75rem;"><strong>Vitruve/RepOne</strong></td>
+                  <td style="padding: 0.75rem;">Linear encoder</td>
+                  <td style="padding: 0.75rem;">~$300-400</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.75rem;"><strong>Metric VBT</strong></td>
+                  <td style="padding: 0.75rem;">Camera-based</td>
+                  <td style="padding: 0.75rem;">~$20/mo app</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="text-sm text-gray mt-md">Linear transducers are most accurate but expensive. Modern accelerometers and camera-based systems are good enough for most applications.</p>
+          </div>
+        </div>
+
+        <h2>VBT Implementation Methods</h2>
+
+        <h3>Method 1: Load-Velocity Profiling</h3>
+        <p>Establish your individual load-velocity profile through testing:</p>
+        <ol style="margin-left: 1.5rem;">
+          <li class="mb-sm">Warm up progressively</li>
+          <li class="mb-sm">Record velocity at each weight increment</li>
+          <li class="mb-sm">Create your personal profile</li>
+          <li class="mb-sm">Use profile to prescribe loads</li>
+        </ol>
+
+        <h3>Method 2: Velocity Zones</h3>
+        <p>Use general velocity zones and load until you hit the target:</p>
+        <ul style="margin-left: 1.5rem;">
+          <li class="mb-sm">"Work up to 0.5 m/s for working sets"</li>
+          <li class="mb-sm">Add weight until you reach target velocity</li>
+          <li class="mb-sm">Adjust within sets if velocity drops</li>
+        </ul>
+
+        <h3>Method 3: Velocity Loss Cutoffs</h3>
+        <p>Instead of prescribed reps, train until velocity drops by a set percentage:</p>
+        <ul style="margin-left: 1.5rem;">
+          <li class="mb-sm">10-15% velocity loss: Power/speed emphasis, minimal fatigue</li>
+          <li class="mb-sm">20-25% velocity loss: Balanced strength/hypertrophy</li>
+          <li class="mb-sm">30%+ velocity loss: Hypertrophy, high fatigue accumulation</li>
+        </ul>
+
+        <div class="card mb-lg">
+          <div class="card-body">
+            <h4>Example: Velocity Loss Set</h4>
+            <p>Squat at 0.6 m/s starting velocity, stop when velocity drops 20%:</p>
+            <ul style="margin-left: 1.5rem;">
+              <li class="mb-sm">Rep 1: 0.62 m/s</li>
+              <li class="mb-sm">Rep 2: 0.58 m/s</li>
+              <li class="mb-sm">Rep 3: 0.55 m/s</li>
+              <li class="mb-sm">Rep 4: 0.52 m/s</li>
+              <li class="mb-sm">Rep 5: 0.49 m/s (20% drop — stop set)</li>
+            </ul>
+            <p class="text-sm text-gray mt-md">Instead of "5x5," you get exactly the stimulus you need that day.</p>
+          </div>
+        </div>
+
+        <h2>Benefits of VBT</h2>
+
+        <h3>1. Daily Autoregulation</h3>
+        <p>Training matches your actual capacity every session. No more overtraining on bad days or undertraining on good days.</p>
+
+        <h3>2. Fatigue Management</h3>
+        <p>Velocity loss cutoffs prevent excessive fatigue accumulation. You get the stimulus without the unnecessary grind.</p>
+
+        <h3>3. Progress Tracking</h3>
+        <p>When velocity at a given load increases, you've gotten stronger — even if the load hasn't changed.</p>
+
+        <h3>4. Intent and Quality</h3>
+        <p>Real-time feedback encourages maximum intent. Athletes move faster when they can see their numbers.</p>
+
+        <h3>5. Reduced Guesswork</h3>
+        <p>No more "does this feel like 80%?" Objective measurement removes subjective estimation.</p>
+
+        <h2>Sample VBT Programs</h2>
+
+        <h3>Power/Speed Focus</h3>
+        <div class="card mb-lg">
+          <div class="card-body">
+            <ul style="margin-left: 1.5rem;">
+              <li class="mb-sm"><strong>Target velocity:</strong> 0.8-1.0 m/s</li>
+              <li class="mb-sm"><strong>Velocity loss cutoff:</strong> 10%</li>
+              <li class="mb-sm"><strong>Sets:</strong> 4-6</li>
+              <li class="mb-sm"><strong>Rest:</strong> 2-3 min</li>
+              <li class="mb-sm"><strong>Goal:</strong> Maximum power output, minimal fatigue</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Strength Focus</h3>
+        <div class="card mb-lg">
+          <div class="card-body">
+            <ul style="margin-left: 1.5rem;">
+              <li class="mb-sm"><strong>Target velocity:</strong> 0.4-0.5 m/s</li>
+              <li class="mb-sm"><strong>Velocity loss cutoff:</strong> 20%</li>
+              <li class="mb-sm"><strong>Sets:</strong> 3-5</li>
+              <li class="mb-sm"><strong>Rest:</strong> 3-5 min</li>
+              <li class="mb-sm"><strong>Goal:</strong> Strength development with controlled fatigue</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Hypertrophy Focus</h3>
+        <div class="card mb-lg">
+          <div class="card-body">
+            <ul style="margin-left: 1.5rem;">
+              <li class="mb-sm"><strong>Target velocity:</strong> 0.5-0.65 m/s</li>
+              <li class="mb-sm"><strong>Velocity loss cutoff:</strong> 30-40%</li>
+              <li class="mb-sm"><strong>Sets:</strong> 3-4</li>
+              <li class="mb-sm"><strong>Rest:</strong> 2-3 min</li>
+              <li class="mb-sm"><strong>Goal:</strong> Muscle damage and metabolic stress</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Practical Tips</h2>
+
+        <h3>Starting Out</h3>
+        <ul style="margin-left: 1.5rem;">
+          <li class="mb-sm">Spend 2-4 weeks just collecting data before changing programming</li>
+          <li class="mb-sm">Build your individual load-velocity profiles</li>
+          <li class="mb-sm">Note exercise-specific differences (squat vs. bench vs. deadlift)</li>
+        </ul>
+
+        <h3>Common Mistakes</h3>
+        <ul style="margin-left: 1.5rem;">
+          <li class="mb-sm"><strong>Chasing numbers:</strong> The goal is training effect, not velocity PRs</li>
+          <li class="mb-sm"><strong>Inconsistent technique:</strong> Velocity data is only valid with consistent execution</li>
+          <li class="mb-sm"><strong>Wrong exercises:</strong> VBT works best for compound barbell lifts</li>
+          <li class="mb-sm"><strong>Over-reliance:</strong> VBT is a tool, not a complete system</li>
+        </ul>
+
+        <h2>When VBT Is Most Valuable</h2>
+
+        <ul style="margin-left: 1.5rem;">
+          <li class="mb-sm"><strong>In-season athletes:</strong> Managing fatigue while maintaining strength</li>
+          <li class="mb-sm"><strong>Peaking for competition:</strong> Knowing when you're ready</li>
+          <li class="mb-sm"><strong>Variable schedules:</strong> When readiness fluctuates significantly</li>
+          <li class="mb-sm"><strong>Advanced lifters:</strong> Who need more precision than percentages provide</li>
+        </ul>
+
+        <h2>When VBT Is Less Valuable</h2>
+
+        <ul style="margin-left: 1.5rem;">
+          <li class="mb-sm"><strong>Beginners:</strong> Simple progressive overload works fine</li>
+          <li class="mb-sm"><strong>Isolation exercises:</strong> VBT works best on compounds</li>
+          <li class="mb-sm"><strong>Technique development:</strong> Focus on quality, not velocity</li>
+          <li class="mb-sm"><strong>Low-budget situations:</strong> Good coaching beats no VBT device</li>
+        </ul>
+
+        <h2>Bottom Line</h2>
+
+        <p>Velocity-based training solves a real problem: the mismatch between prescribed loads and daily readiness. By training based on objective performance data rather than historical percentages, you can optimize every session for your actual capacity.</p>
+
+        <p>Start by collecting velocity data on your current program. Build your profiles. Then experiment with velocity targets and loss cutoffs. The technology has become affordable enough that VBT is no longer just for elite programs — it's accessible to anyone serious about optimizing their training.</p>
+
+        <div class="card mt-xl">
+          <div class="card-body">
+            <h4>Related Articles</h4>
+            <ul class="footer-links">
+              <li><a href="/blog/wearables-hrv-training.html">Wearables and HRV: Using Data to Optimize Training</a></li>
+              <li><a href="/blog/ai-coaching-tools.html">AI Coaching Tools: Promise and Reality</a></li>
+              <li><a href="/blog/strength-training-after-40.html">Strength Training After 40</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning worldwide.</p>
+        </div>
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/beginner/">Beginner</a></li>
+            <li><a href="/workouts/hiit/">HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/cardiovascular-basics/">Cardio Basics</a></li>
+            <li><a href="/learn/vo2-max/">VO2 Max</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/experts/">Expert Network</a></li>
+            <li><a href="/blog/">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

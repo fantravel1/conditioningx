@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estimate calories burned during cardio activities. Calculate energy expenditure for running, cycling, swimming, and more.">
+  <title>Calorie Burn Estimator - ConditioningX</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calorie Burn Estimator",
+    "description": "Estimate calories burned during cardiovascular activities",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <p class="text-sm mb-md"><a href="/tools/">Tools</a> / Calorie Estimator</p>
+      <h1>Calorie Burn Estimator</h1>
+      <p class="text-gray">Estimate energy expenditure during cardiovascular activities.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2" style="gap: 3rem; align-items: start;">
+        <div>
+          <div class="card">
+            <div class="card-body">
+              <form id="calorie-form">
+                <div class="form-group">
+                  <label class="form-label" for="weight">Your Weight *</label>
+                  <div class="flex gap-md">
+                    <input type="number" id="weight" class="form-input" placeholder="e.g., 150" min="50" max="500" required style="flex: 2;">
+                    <select id="weight-unit" class="form-input" style="flex: 1;">
+                      <option value="lbs">lbs</option>
+                      <option value="kg">kg</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="activity">Activity *</label>
+                  <select id="activity" class="form-input" required>
+                    <option value="">Select an activity</option>
+                    <optgroup label="Running">
+                      <option value="running-5">Running (5 mph / 8 km/h)</option>
+                      <option value="running-6">Running (6 mph / 10 km/h)</option>
+                      <option value="running-7">Running (7 mph / 11 km/h)</option>
+                      <option value="running-8">Running (8 mph / 13 km/h)</option>
+                      <option value="running-9">Running (9 mph / 14 km/h)</option>
+                      <option value="running-10">Running (10 mph / 16 km/h)</option>
+                    </optgroup>
+                    <optgroup label="Walking">
+                      <option value="walking-2">Walking (2 mph / 3 km/h)</option>
+                      <option value="walking-3">Walking (3 mph / 5 km/h)</option>
+                      <option value="walking-4">Brisk Walking (4 mph / 6.5 km/h)</option>
+                      <option value="hiking">Hiking</option>
+                    </optgroup>
+                    <optgroup label="Cycling">
+                      <option value="cycling-10">Cycling (10 mph / 16 km/h)</option>
+                      <option value="cycling-12">Cycling (12 mph / 19 km/h)</option>
+                      <option value="cycling-14">Cycling (14 mph / 22 km/h)</option>
+                      <option value="cycling-16">Cycling (16 mph / 26 km/h)</option>
+                      <option value="spinning">Spinning/Indoor Cycling</option>
+                    </optgroup>
+                    <optgroup label="Swimming">
+                      <option value="swimming-light">Swimming (light effort)</option>
+                      <option value="swimming-moderate">Swimming (moderate)</option>
+                      <option value="swimming-vigorous">Swimming (vigorous)</option>
+                    </optgroup>
+                    <optgroup label="Other Cardio">
+                      <option value="jump-rope">Jump Rope</option>
+                      <option value="rowing">Rowing Machine</option>
+                      <option value="elliptical">Elliptical</option>
+                      <option value="stair-climber">Stair Climber</option>
+                      <option value="dancing">Dancing</option>
+                      <option value="hiit">HIIT Training</option>
+                      <option value="kickboxing">Kickboxing</option>
+                    </optgroup>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="duration">Duration (minutes) *</label>
+                  <input type="number" id="duration" class="form-input" placeholder="e.g., 30" min="1" max="300" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Calculate Calories</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="card mt-lg">
+            <div class="card-body">
+              <h4>About This Calculator</h4>
+              <p class="text-sm text-gray">Calorie estimates are based on MET (Metabolic Equivalent of Task) values from the Compendium of Physical Activities. Individual results may vary based on:</p>
+              <ul class="text-sm text-gray" style="margin-left: 1.5rem;">
+                <li>Age and fitness level</li>
+                <li>Actual exercise intensity</li>
+                <li>Body composition</li>
+                <li>Environmental conditions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div id="calorie-results" class="hidden">
+            <!-- Results will be inserted here -->
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h4>MET Values Reference</h4>
+              <p class="text-sm text-gray mb-md">MET = energy cost compared to sitting quietly (1 MET)</p>
+              <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--gray-200);">
+                    <th style="text-align: left; padding: 0.5rem;">Activity</th>
+                    <th style="text-align: center; padding: 0.5rem;">METs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">Walking (3 mph)</td>
+                    <td style="text-align: center; padding: 0.5rem;">3.5</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">Running (6 mph)</td>
+                    <td style="text-align: center; padding: 0.5rem;">9.8</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">Cycling (12 mph)</td>
+                    <td style="text-align: center; padding: 0.5rem;">8.0</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">Swimming (moderate)</td>
+                    <td style="text-align: center; padding: 0.5rem;">7.0</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">Jump Rope</td>
+                    <td style="text-align: center; padding: 0.5rem;">11.0</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 0.5rem;">HIIT Training</td>
+                    <td style="text-align: center; padding: 0.5rem;">12.0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="philosophy-box mt-lg">
+            <h4>A Note on Calories</h4>
+            <p class="mb-0">At ConditioningX, we focus on <strong>health and capability</strong>, not calorie burning. Exercise provides countless benefits beyond energy expenditure: improved cardiovascular health, mental wellbeing, strength, and endurance. This tool is for informational purposes only.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning worldwide.</p>
+        </div>
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/beginner/">Beginner</a></li>
+            <li><a href="/workouts/hiit/">HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/cardiovascular-basics/">Cardio Basics</a></li>
+            <li><a href="/learn/energy-systems/">Energy Systems</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/experts/">Expert Network</a></li>
+            <li><a href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // MET values for activities
+    const metValues = {
+      'running-5': 8.3,
+      'running-6': 9.8,
+      'running-7': 11.0,
+      'running-8': 11.8,
+      'running-9': 12.8,
+      'running-10': 14.5,
+      'walking-2': 2.5,
+      'walking-3': 3.5,
+      'walking-4': 5.0,
+      'hiking': 6.0,
+      'cycling-10': 6.8,
+      'cycling-12': 8.0,
+      'cycling-14': 10.0,
+      'cycling-16': 12.0,
+      'spinning': 8.5,
+      'swimming-light': 5.0,
+      'swimming-moderate': 7.0,
+      'swimming-vigorous': 10.0,
+      'jump-rope': 11.0,
+      'rowing': 7.0,
+      'elliptical': 5.0,
+      'stair-climber': 9.0,
+      'dancing': 5.5,
+      'hiit': 12.0,
+      'kickboxing': 10.0
+    };
+
+    document.getElementById('calorie-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      let weight = parseFloat(document.getElementById('weight').value);
+      const weightUnit = document.getElementById('weight-unit').value;
+      const activity = document.getElementById('activity').value;
+      const duration = parseInt(document.getElementById('duration').value);
+
+      // Convert to kg if needed
+      if (weightUnit === 'lbs') {
+        weight = weight * 0.453592;
+      }
+
+      const met = metValues[activity];
+
+      // Calorie formula: Calories = MET × weight (kg) × duration (hours)
+      const hours = duration / 60;
+      const calories = Math.round(met * weight * hours);
+
+      // Get activity name
+      const activitySelect = document.getElementById('activity');
+      const activityName = activitySelect.options[activitySelect.selectedIndex].text;
+
+      displayResults(calories, activityName, duration, met);
+    });
+
+    function displayResults(calories, activityName, duration, met) {
+      const resultsDiv = document.getElementById('calorie-results');
+
+      // Calculate calories per minute
+      const calPerMin = Math.round(calories / duration);
+
+      resultsDiv.innerHTML = `
+        <div class="card mb-lg" style="border: 2px solid var(--primary);">
+          <div class="card-body text-center">
+            <p class="text-gray mb-sm">${activityName}</p>
+            <p class="text-sm text-gray mb-md">${duration} minutes</p>
+            <div style="font-size: 4rem; font-weight: 700; color: var(--primary);">${calories}</div>
+            <p class="text-gray">estimated calories burned</p>
+            <div class="grid grid-2 mt-lg" style="gap: 1rem;">
+              <div class="philosophy-box">
+                <p class="mb-0"><strong>${calPerMin}</strong> cal/min</p>
+              </div>
+              <div class="philosophy-box">
+                <p class="mb-0"><strong>${met}</strong> METs</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      resultsDiv.classList.remove('hidden');
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>

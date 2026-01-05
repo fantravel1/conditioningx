@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate your training load and monitor recovery. Track weekly volume to prevent overtraining and optimize performance.">
+  <title>Training Load Calculator - ConditioningX</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Training Load Calculator",
+    "description": "Calculate and monitor your weekly training load",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <p class="text-sm mb-md"><a href="/tools/">Tools</a> / Training Load</p>
+      <h1>Training Load Calculator</h1>
+      <p class="text-gray">Track your weekly training load to optimize recovery and prevent overtraining.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2" style="gap: 3rem; align-items: start;">
+        <div>
+          <div class="card">
+            <div class="card-body">
+              <h3 class="mb-lg">Add Workout Session</h3>
+              <p class="text-sm text-gray mb-lg">Enter each workout from the past 7 days to calculate your weekly load.</p>
+
+              <form id="session-form">
+                <div class="form-group">
+                  <label class="form-label" for="duration">Duration (minutes) *</label>
+                  <input type="number" id="duration" class="form-input" placeholder="e.g., 45" min="5" max="300" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="rpe">Rate of Perceived Exertion (RPE) *</label>
+                  <select id="rpe" class="form-input" required>
+                    <option value="">Select intensity level</option>
+                    <option value="1">1 - Very, very easy (rest)</option>
+                    <option value="2">2 - Easy (could do this all day)</option>
+                    <option value="3">3 - Moderate (comfortable conversation)</option>
+                    <option value="4">4 - Somewhat hard (conversation harder)</option>
+                    <option value="5">5 - Hard (short sentences only)</option>
+                    <option value="6">6 - Harder (a few words at a time)</option>
+                    <option value="7">7 - Very hard (can barely talk)</option>
+                    <option value="8">8 - Very, very hard (can't talk)</option>
+                    <option value="9">9 - Maximum effort</option>
+                    <option value="10">10 - Absolute maximum</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="session-type">Session Type (optional)</label>
+                  <input type="text" id="session-type" class="form-input" placeholder="e.g., Running, HIIT, Swimming">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Add Session</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="card mt-lg">
+            <div class="card-body">
+              <h4>Weekly Sessions</h4>
+              <div id="session-list">
+                <p class="text-gray text-sm">No sessions added yet. Add workouts above to calculate your training load.</p>
+              </div>
+              <button id="clear-sessions" class="btn btn-outline btn-sm mt-md hidden">Clear All</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="border: 2px solid var(--primary);">
+            <div class="card-body text-center">
+              <h4 class="text-gray mb-sm">Weekly Training Load</h4>
+              <div id="total-load" style="font-size: 4rem; font-weight: 700; color: var(--primary);">0</div>
+              <p class="text-gray">arbitrary units (AU)</p>
+
+              <div id="load-zone" class="mt-lg">
+                <div class="philosophy-box">
+                  <p class="mb-0">Add sessions to see your load zone</p>
+                </div>
+              </div>
+
+              <div class="grid grid-3 mt-lg" style="gap: 0.5rem;">
+                <div>
+                  <div id="session-count" style="font-size: 1.5rem; font-weight: 600;">0</div>
+                  <p class="text-sm text-gray">sessions</p>
+                </div>
+                <div>
+                  <div id="total-duration" style="font-size: 1.5rem; font-weight: 600;">0</div>
+                  <p class="text-sm text-gray">minutes</p>
+                </div>
+                <div>
+                  <div id="avg-rpe" style="font-size: 1.5rem; font-weight: 600;">0</div>
+                  <p class="text-sm text-gray">avg RPE</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-lg">
+            <div class="card-body">
+              <h4>Training Load Guidelines</h4>
+              <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--gray-200);">
+                    <th style="text-align: left; padding: 0.5rem;">Weekly Load</th>
+                    <th style="text-align: left; padding: 0.5rem;">Zone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">&lt; 300 AU</td>
+                    <td style="padding: 0.5rem; color: var(--gray-500);">Very Light / Recovery</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">300-600 AU</td>
+                    <td style="padding: 0.5rem; color: #22c55e;">Light / Maintenance</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">600-1000 AU</td>
+                    <td style="padding: 0.5rem; color: #eab308;">Moderate / Building</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">1000-1500 AU</td>
+                    <td style="padding: 0.5rem; color: #f97316;">High / Peak Training</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 0.5rem;">&gt; 1500 AU</td>
+                    <td style="padding: 0.5rem; color: #ef4444;">Very High / Risk Zone</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card mt-lg">
+            <div class="card-body">
+              <h4>About sRPE Training Load</h4>
+              <p class="text-sm text-gray">Session RPE (sRPE) training load is calculated by multiplying duration by perceived exertion:</p>
+              <div class="philosophy-box mt-md">
+                <p class="mb-0"><strong>Load = Duration (min) × RPE</strong></p>
+              </div>
+              <p class="text-sm text-gray mt-md">This validated method correlates well with heart rate-based methods and is easy to use without special equipment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-lg">Training Load Principles</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-body">
+            <h4>The 10% Rule</h4>
+            <p class="text-gray">Increase weekly training load by no more than 10% per week to reduce injury risk and allow for adaptation.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h4>Acute:Chronic Ratio</h4>
+            <p class="text-gray">Compare this week's load to your 4-week average. Ratios above 1.5 increase injury risk. Stay between 0.8-1.3.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h4>Recovery Weeks</h4>
+            <p class="text-gray">Every 3-4 weeks, reduce load by 40-50% to allow full recovery and adaptation before building again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning worldwide.</p>
+        </div>
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/beginner/">Beginner</a></li>
+            <li><a href="/workouts/hiit/">HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/cardiovascular-basics/">Cardio Basics</a></li>
+            <li><a href="/learn/heart-rate-training/">HR Zones</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/programs/">Programs</a></li>
+            <li><a href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    let sessions = [];
+
+    // Load sessions from localStorage
+    if (localStorage.getItem('trainingSessions')) {
+      sessions = JSON.parse(localStorage.getItem('trainingSessions'));
+      updateDisplay();
+    }
+
+    document.getElementById('session-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const duration = parseInt(document.getElementById('duration').value);
+      const rpe = parseInt(document.getElementById('rpe').value);
+      const type = document.getElementById('session-type').value || 'Workout';
+
+      const session = {
+        id: Date.now(),
+        duration,
+        rpe,
+        type,
+        load: duration * rpe
+      };
+
+      sessions.push(session);
+      saveSessions();
+      updateDisplay();
+
+      // Reset form
+      document.getElementById('duration').value = '';
+      document.getElementById('rpe').value = '';
+      document.getElementById('session-type').value = '';
+    });
+
+    document.getElementById('clear-sessions').addEventListener('click', function() {
+      if (confirm('Clear all sessions?')) {
+        sessions = [];
+        saveSessions();
+        updateDisplay();
+      }
+    });
+
+    function saveSessions() {
+      localStorage.setItem('trainingSessions', JSON.stringify(sessions));
+    }
+
+    function deleteSession(id) {
+      sessions = sessions.filter(s => s.id !== id);
+      saveSessions();
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      const sessionList = document.getElementById('session-list');
+      const clearBtn = document.getElementById('clear-sessions');
+
+      if (sessions.length === 0) {
+        sessionList.innerHTML = '<p class="text-gray text-sm">No sessions added yet. Add workouts above to calculate your training load.</p>';
+        clearBtn.classList.add('hidden');
+      } else {
+        sessionList.innerHTML = sessions.map(s => `
+          <div class="flex justify-between" style="padding: 0.75rem; background: var(--gray-50); border-radius: 0.5rem; margin-bottom: 0.5rem; align-items: center;">
+            <div>
+              <strong>${s.type}</strong>
+              <span class="text-sm text-gray">${s.duration}min × RPE ${s.rpe}</span>
+            </div>
+            <div class="flex gap-md" style="align-items: center;">
+              <span class="tag tag-primary">${s.load} AU</span>
+              <button onclick="deleteSession(${s.id})" class="btn btn-sm btn-outline" style="padding: 0.25rem 0.5rem;">×</button>
+            </div>
+          </div>
+        `).join('');
+        clearBtn.classList.remove('hidden');
+      }
+
+      // Calculate totals
+      const totalLoad = sessions.reduce((sum, s) => sum + s.load, 0);
+      const totalDuration = sessions.reduce((sum, s) => sum + s.duration, 0);
+      const avgRpe = sessions.length > 0 ? (sessions.reduce((sum, s) => sum + s.rpe, 0) / sessions.length).toFixed(1) : 0;
+
+      document.getElementById('total-load').textContent = totalLoad;
+      document.getElementById('session-count').textContent = sessions.length;
+      document.getElementById('total-duration').textContent = totalDuration;
+      document.getElementById('avg-rpe').textContent = avgRpe;
+
+      // Update load zone
+      const loadZone = document.getElementById('load-zone');
+      let zoneText, zoneColor;
+
+      if (totalLoad === 0) {
+        zoneText = 'Add sessions to see your load zone';
+        zoneColor = 'var(--gray-500)';
+      } else if (totalLoad < 300) {
+        zoneText = 'Very Light / Recovery Week';
+        zoneColor = 'var(--gray-500)';
+      } else if (totalLoad < 600) {
+        zoneText = 'Light / Maintenance';
+        zoneColor = '#22c55e';
+      } else if (totalLoad < 1000) {
+        zoneText = 'Moderate / Building';
+        zoneColor = '#eab308';
+      } else if (totalLoad < 1500) {
+        zoneText = 'High / Peak Training';
+        zoneColor = '#f97316';
+      } else {
+        zoneText = 'Very High / Monitor Recovery';
+        zoneColor = '#ef4444';
+      }
+
+      loadZone.innerHTML = `
+        <div class="philosophy-box" style="border-left-color: ${zoneColor};">
+          <p class="mb-0" style="color: ${zoneColor};"><strong>${zoneText}</strong></p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

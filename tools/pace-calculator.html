@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free running and cycling pace calculator. Calculate pace, time, or distance. Convert between min/mile and min/km.">
+  <title>Pace Calculator - ConditioningX</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pace Calculator",
+    "description": "Calculate running and cycling pace, time, or distance",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">ConditioningX</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/workouts/" class="nav-link">Workouts</a></li>
+        <li><a href="/learn/" class="nav-link">Learn</a></li>
+        <li><a href="/experts/" class="nav-link">Experts</a></li>
+        <li><a href="/recommend/" class="nav-link">Find Workout</a></li>
+        <li><a href="/programs/" class="nav-link">Programs</a></li>
+        <li><a href="/tools/" class="nav-link">Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <p class="text-sm mb-md"><a href="/tools/">Tools</a> / Pace Calculator</p>
+      <h1>Pace Calculator</h1>
+      <p class="text-gray">Calculate pace, time, or distance for running and cycling.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2" style="gap: 3rem; align-items: start;">
+        <div>
+          <div class="card">
+            <div class="card-body">
+              <h3 class="mb-lg">Calculate Your Pace</h3>
+              <p class="text-gray mb-lg">Enter any two values to calculate the third.</p>
+
+              <form id="pace-form">
+                <div class="form-group">
+                  <label class="form-label">Distance</label>
+                  <div class="flex gap-md">
+                    <input type="number" id="distance" class="form-input" placeholder="e.g., 5" step="0.01" min="0" style="flex: 2;">
+                    <select id="distance-unit" class="form-input" style="flex: 1;">
+                      <option value="km">km</option>
+                      <option value="miles">miles</option>
+                      <option value="meters">meters</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Time</label>
+                  <div class="flex gap-sm">
+                    <input type="number" id="time-hours" class="form-input" placeholder="hrs" min="0" max="99">
+                    <input type="number" id="time-minutes" class="form-input" placeholder="min" min="0" max="59">
+                    <input type="number" id="time-seconds" class="form-input" placeholder="sec" min="0" max="59">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Pace</label>
+                  <div class="flex gap-md">
+                    <div class="flex gap-sm" style="flex: 2;">
+                      <input type="number" id="pace-minutes" class="form-input" placeholder="min" min="0" max="59">
+                      <input type="number" id="pace-seconds" class="form-input" placeholder="sec" min="0" max="59">
+                    </div>
+                    <select id="pace-unit" class="form-input" style="flex: 1;">
+                      <option value="min/km">min/km</option>
+                      <option value="min/mile">min/mile</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="flex gap-md mt-lg">
+                  <button type="submit" class="btn btn-primary btn-lg" style="flex: 1;">Calculate</button>
+                  <button type="button" id="clear-btn" class="btn btn-outline" style="flex: 1;">Clear</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="card mt-lg">
+            <div class="card-body">
+              <h4>Quick Race Distances</h4>
+              <div class="flex gap-sm" style="flex-wrap: wrap;">
+                <button class="btn btn-sm btn-outline race-btn" data-distance="5" data-unit="km">5K</button>
+                <button class="btn btn-sm btn-outline race-btn" data-distance="10" data-unit="km">10K</button>
+                <button class="btn btn-sm btn-outline race-btn" data-distance="21.0975" data-unit="km">Half Marathon</button>
+                <button class="btn btn-sm btn-outline race-btn" data-distance="42.195" data-unit="km">Marathon</button>
+                <button class="btn btn-sm btn-outline race-btn" data-distance="1" data-unit="miles">1 Mile</button>
+                <button class="btn btn-sm btn-outline race-btn" data-distance="1.609" data-unit="km">1600m</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div id="pace-results" class="hidden">
+            <!-- Results will be inserted here -->
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h4>Common Running Paces</h4>
+              <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--gray-200);">
+                    <th style="text-align: left; padding: 0.5rem;">Pace</th>
+                    <th style="text-align: center; padding: 0.5rem;">5K Time</th>
+                    <th style="text-align: center; padding: 0.5rem;">10K Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">5:00/km (8:03/mi)</td>
+                    <td style="text-align: center; padding: 0.5rem;">25:00</td>
+                    <td style="text-align: center; padding: 0.5rem;">50:00</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">6:00/km (9:39/mi)</td>
+                    <td style="text-align: center; padding: 0.5rem;">30:00</td>
+                    <td style="text-align: center; padding: 0.5rem;">1:00:00</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">7:00/km (11:16/mi)</td>
+                    <td style="text-align: center; padding: 0.5rem;">35:00</td>
+                    <td style="text-align: center; padding: 0.5rem;">1:10:00</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--gray-100);">
+                    <td style="padding: 0.5rem;">8:00/km (12:52/mi)</td>
+                    <td style="text-align: center; padding: 0.5rem;">40:00</td>
+                    <td style="text-align: center; padding: 0.5rem;">1:20:00</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 0.5rem;">9:00/km (14:29/mi)</td>
+                    <td style="text-align: center; padding: 0.5rem;">45:00</td>
+                    <td style="text-align: center; padding: 0.5rem;">1:30:00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card mt-lg">
+            <div class="card-body">
+              <h4>Training Pace Zones</h4>
+              <p class="text-sm text-gray mb-md">Based on your easy/conversational pace:</p>
+              <ul style="margin-left: 1.5rem;">
+                <li class="mb-sm"><strong>Easy/Recovery:</strong> 60-90 sec slower than race pace</li>
+                <li class="mb-sm"><strong>Long Run:</strong> 30-60 sec slower than race pace</li>
+                <li class="mb-sm"><strong>Tempo:</strong> 15-30 sec slower than race pace</li>
+                <li class="mb-sm"><strong>Threshold:</strong> Current race pace</li>
+                <li><strong>Intervals:</strong> 10-30 sec faster than race pace</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <h2 class="text-center mb-lg">Pace Conversion Chart</h2>
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <div class="card-body">
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--gray-200);">
+                <th style="text-align: center; padding: 0.75rem;">min/km</th>
+                <th style="text-align: center; padding: 0.75rem;">min/mile</th>
+                <th style="text-align: center; padding: 0.75rem;">km/h</th>
+                <th style="text-align: center; padding: 0.75rem;">mph</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--gray-100);">
+                <td style="text-align: center; padding: 0.5rem;">4:00</td>
+                <td style="text-align: center; padding: 0.5rem;">6:26</td>
+                <td style="text-align: center; padding: 0.5rem;">15.0</td>
+                <td style="text-align: center; padding: 0.5rem;">9.3</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--gray-100);">
+                <td style="text-align: center; padding: 0.5rem;">5:00</td>
+                <td style="text-align: center; padding: 0.5rem;">8:03</td>
+                <td style="text-align: center; padding: 0.5rem;">12.0</td>
+                <td style="text-align: center; padding: 0.5rem;">7.5</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--gray-100);">
+                <td style="text-align: center; padding: 0.5rem;">6:00</td>
+                <td style="text-align: center; padding: 0.5rem;">9:39</td>
+                <td style="text-align: center; padding: 0.5rem;">10.0</td>
+                <td style="text-align: center; padding: 0.5rem;">6.2</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--gray-100);">
+                <td style="text-align: center; padding: 0.5rem;">7:00</td>
+                <td style="text-align: center; padding: 0.5rem;">11:16</td>
+                <td style="text-align: center; padding: 0.5rem;">8.6</td>
+                <td style="text-align: center; padding: 0.5rem;">5.3</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--gray-100);">
+                <td style="text-align: center; padding: 0.5rem;">8:00</td>
+                <td style="text-align: center; padding: 0.5rem;">12:52</td>
+                <td style="text-align: center; padding: 0.5rem;">7.5</td>
+                <td style="text-align: center; padding: 0.5rem;">4.7</td>
+              </tr>
+              <tr>
+                <td style="text-align: center; padding: 0.5rem;">9:00</td>
+                <td style="text-align: center; padding: 0.5rem;">14:29</td>
+                <td style="text-align: center; padding: 0.5rem;">6.7</td>
+                <td style="text-align: center; padding: 0.5rem;">4.1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">ConditioningX</div>
+          <p>Democratizing healthy cardiovascular conditioning worldwide.</p>
+        </div>
+        <div>
+          <h4>Workouts</h4>
+          <ul class="footer-links">
+            <li><a href="/workouts/beginner/">Beginner</a></li>
+            <li><a href="/workouts/running/">Running</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="/learn/cardiovascular-basics/">Cardio Basics</a></li>
+            <li><a href="/learn/heart-rate-training/">HR Zones</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/programs/">Programs</a></li>
+            <li><a href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ConditioningX. All bodies welcome.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    const KM_TO_MILES = 0.621371;
+    const MILES_TO_KM = 1.60934;
+
+    // Get form elements
+    const distanceInput = document.getElementById('distance');
+    const distanceUnit = document.getElementById('distance-unit');
+    const timeHours = document.getElementById('time-hours');
+    const timeMinutes = document.getElementById('time-minutes');
+    const timeSeconds = document.getElementById('time-seconds');
+    const paceMinutes = document.getElementById('pace-minutes');
+    const paceSeconds = document.getElementById('pace-seconds');
+    const paceUnit = document.getElementById('pace-unit');
+
+    // Race distance buttons
+    document.querySelectorAll('.race-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        distanceInput.value = this.dataset.distance;
+        distanceUnit.value = this.dataset.unit;
+      });
+    });
+
+    // Clear button
+    document.getElementById('clear-btn').addEventListener('click', function() {
+      distanceInput.value = '';
+      timeHours.value = '';
+      timeMinutes.value = '';
+      timeSeconds.value = '';
+      paceMinutes.value = '';
+      paceSeconds.value = '';
+      document.getElementById('pace-results').classList.add('hidden');
+    });
+
+    // Form submission
+    document.getElementById('pace-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      calculate();
+    });
+
+    function calculate() {
+      // Get values
+      let distance = parseFloat(distanceInput.value) || 0;
+      const distUnit = distanceUnit.value;
+
+      let totalSeconds = 0;
+      if (timeHours.value || timeMinutes.value || timeSeconds.value) {
+        totalSeconds = (parseInt(timeHours.value) || 0) * 3600 +
+                      (parseInt(timeMinutes.value) || 0) * 60 +
+                      (parseInt(timeSeconds.value) || 0);
+      }
+
+      let paceSecondsPerUnit = 0;
+      if (paceMinutes.value || paceSeconds.value) {
+        paceSecondsPerUnit = (parseInt(paceMinutes.value) || 0) * 60 +
+                            (parseInt(paceSeconds.value) || 0);
+      }
+      const pUnit = paceUnit.value;
+
+      // Convert distance to km for calculations
+      let distanceKm = distance;
+      if (distUnit === 'miles') distanceKm = distance * MILES_TO_KM;
+      if (distUnit === 'meters') distanceKm = distance / 1000;
+
+      // Convert pace to seconds per km
+      let paceSecondsPerKm = paceSecondsPerUnit;
+      if (pUnit === 'min/mile') paceSecondsPerKm = paceSecondsPerUnit / MILES_TO_KM;
+
+      let calculatedField = '';
+      let result = {};
+
+      // Determine what to calculate
+      if (distanceKm > 0 && totalSeconds > 0 && paceSecondsPerKm === 0) {
+        // Calculate pace
+        paceSecondsPerKm = totalSeconds / distanceKm;
+        calculatedField = 'pace';
+      } else if (distanceKm > 0 && paceSecondsPerKm > 0 && totalSeconds === 0) {
+        // Calculate time
+        totalSeconds = distanceKm * paceSecondsPerKm;
+        calculatedField = 'time';
+      } else if (totalSeconds > 0 && paceSecondsPerKm > 0 && distanceKm === 0) {
+        // Calculate distance
+        distanceKm = totalSeconds / paceSecondsPerKm;
+        calculatedField = 'distance';
+      } else {
+        alert('Please enter exactly two values to calculate the third.');
+        return;
+      }
+
+      // Calculate all values for display
+      result.distanceKm = distanceKm;
+      result.distanceMiles = distanceKm * KM_TO_MILES;
+      result.totalSeconds = totalSeconds;
+      result.paceSecondsPerKm = paceSecondsPerKm;
+      result.paceSecondsPerMile = paceSecondsPerKm * MILES_TO_KM;
+      result.speedKmh = 3600 / paceSecondsPerKm;
+      result.speedMph = 3600 / result.paceSecondsPerMile;
+
+      displayResults(result, calculatedField);
+    }
+
+    function formatTime(totalSeconds) {
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = Math.round(totalSeconds % 60);
+
+      if (hours > 0) {
+        return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }
+      return `${minutes}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function formatPace(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const secs = Math.round(seconds % 60);
+      return `${minutes}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function displayResults(result, calculatedField) {
+      const resultsDiv = document.getElementById('pace-results');
+
+      let highlightDistance = calculatedField === 'distance' ? 'border: 2px solid var(--primary);' : '';
+      let highlightTime = calculatedField === 'time' ? 'border: 2px solid var(--primary);' : '';
+      let highlightPace = calculatedField === 'pace' ? 'border: 2px solid var(--primary);' : '';
+
+      resultsDiv.innerHTML = `
+        <div class="card mb-lg" style="${highlightDistance}">
+          <div class="card-body">
+            <h4 class="text-gray mb-sm">Distance</h4>
+            <div style="font-size: 2rem; font-weight: 700;">${result.distanceKm.toFixed(2)} km</div>
+            <div class="text-gray">${result.distanceMiles.toFixed(2)} miles</div>
+          </div>
+        </div>
+
+        <div class="card mb-lg" style="${highlightTime}">
+          <div class="card-body">
+            <h4 class="text-gray mb-sm">Time</h4>
+            <div style="font-size: 2rem; font-weight: 700;">${formatTime(result.totalSeconds)}</div>
+          </div>
+        </div>
+
+        <div class="card mb-lg" style="${highlightPace}">
+          <div class="card-body">
+            <h4 class="text-gray mb-sm">Pace</h4>
+            <div style="font-size: 2rem; font-weight: 700;">${formatPace(result.paceSecondsPerKm)} /km</div>
+            <div class="text-gray">${formatPace(result.paceSecondsPerMile)} /mile</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h4 class="text-gray mb-sm">Speed</h4>
+            <div style="font-size: 1.5rem; font-weight: 600;">${result.speedKmh.toFixed(1)} km/h</div>
+            <div class="text-gray">${result.speedMph.toFixed(1)} mph</div>
+          </div>
+        </div>
+      `;
+      resultsDiv.classList.remove('hidden');
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>
