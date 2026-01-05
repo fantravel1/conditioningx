@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa"/>
+      <stop offset="100%" style="stop-color:#34d399"/>
+    </linearGradient>
+    <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.05" stroke="white" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Heart icon with pulse -->
+  <g transform="translate(100, 180)">
+    <path d="M135 220 C45 160, 0 90, 55 35 C95 -5, 135 30, 135 70 C135 30, 175 -5, 215 35 C270 90, 225 160, 135 220Z" fill="url(#heartGrad)" opacity="0.9"/>
+    <path d="M30 120 L60 120 L80 80 L100 160 L120 100 L140 140 L160 120 L240 120" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <!-- Brand name -->
+  <text x="400" y="280" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="72" font-weight="800" fill="url(#textGrad)">ConditioningX</text>
+
+  <!-- Tagline -->
+  <text x="400" y="350" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="400" fill="#94a3b8">Cardiovascular Conditioning Education</text>
+
+  <!-- Features row -->
+  <g transform="translate(400, 420)" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#64748b">
+    <text x="0" y="0">Workouts</text>
+    <circle cx="100" cy="-6" r="3" fill="#475569"/>
+    <text x="120" y="0">Programs</text>
+    <circle cx="240" cy="-6" r="3" fill="#475569"/>
+    <text x="260" y="0">Expert Content</text>
+    <circle cx="420" cy="-6" r="3" fill="#475569"/>
+    <text x="440" y="0">Free Tools</text>
+  </g>
+
+  <!-- Website URL -->
+  <text x="400" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600" fill="#60a5fa">conditioningx.com</text>
+
+  <!-- Decorative pulse line at bottom -->
+  <path d="M0 580 L200 580 L250 550 L300 610 L350 570 L400 590 L450 580 L1200 580" stroke="url(#heartGrad)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
+</svg>
