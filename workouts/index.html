@@ -80,6 +80,7 @@
             <option value="jump-rope">Jump Rope</option>
             <option value="dance">Dance</option>
             <option value="rowing">Rowing</option>
+            <option value="kettlebell">Kettlebell</option>
           </select>
         </div>
         <div class="form-group">
@@ -102,11 +103,26 @@
           </select>
         </div>
       </div>
+      <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; align-items: center;">
+        <button class="btn btn-sm btn-outline" id="clear-filters">Clear Filters</button>
+        <button class="btn btn-sm btn-primary" id="show-all-workouts">Show All 115 Workouts</button>
+        <span id="results-count" class="text-gray" style="margin-left: auto;"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filtered Results Section (hidden by default) -->
+  <section class="section" id="workout-results" style="display: none;">
+    <div class="container">
+      <h2 class="mb-lg">Filtered Workouts</h2>
+      <div class="grid grid-3 results-grid">
+        <!-- Results will be dynamically inserted here -->
+      </div>
     </div>
   </section>
 
   <!-- Browse by Modality -->
-  <section class="section">
+  <section class="section browse-section">
     <div class="container">
       <h2 class="mb-lg">Browse by Modality</h2>
       <div class="grid grid-4">
@@ -195,7 +211,7 @@
   </section>
 
   <!-- Browse by Experience -->
-  <section class="section" style="background: var(--gray-50);">
+  <section class="section browse-section" style="background: var(--gray-50);">
     <div class="container">
       <h2 class="mb-lg">Browse by Experience Level</h2>
       <div class="grid grid-3">
@@ -240,7 +256,7 @@
   </section>
 
   <!-- Browse by Time -->
-  <section class="section">
+  <section class="section browse-section">
     <div class="container">
       <h2 class="mb-lg">Browse by Time Available</h2>
       <div class="grid grid-3">
@@ -291,7 +307,7 @@
   </section>
 
   <!-- Browse by Location -->
-  <section class="section" style="background: var(--gray-50);">
+  <section class="section browse-section" style="background: var(--gray-50);">
     <div class="container">
       <h2 class="mb-lg">Browse by Location</h2>
 
@@ -418,7 +434,7 @@
   </section>
 
   <!-- Featured Workouts -->
-  <section class="section">
+  <section class="section browse-section">
     <div class="container">
       <h2 class="mb-lg">Featured Workouts</h2>
       <div class="grid grid-3">
